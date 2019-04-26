@@ -2,7 +2,7 @@
 
 OCR-based Crime Analysis
 
-# Developer
+# |Developer
 
 2015112162   신유경
 
@@ -12,6 +12,6 @@ OCR-based Crime Analysis
 
 2017112084   신성현
 
-# Original Opensource
+# |Original Opensource
 
 https://github.com/nufail89/Simple-OCR-AndroidStudio
