@@ -14,4 +14,4 @@ OCR-based Illegal Advertising Block
 
 # | Original Opensource
 
-https://github.com/nufail89/Simple-OCR-AndroidStudio
+https://github.com/komamitsu/Android-OCRSample
