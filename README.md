@@ -15,3 +15,5 @@ OCR-based Illegal Advertising Block
 # | Original Opensource
 
 https://github.com/komamitsu/Android-OCRSample
+
+<img width="333" alt="스크린샷 2019-05-10 오후 8 23 00" src="https://user-images.githubusercontent.com/48276633/57528911-82d36680-736e-11e9-938c-2edb0682f672.png">
