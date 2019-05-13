@@ -176,13 +176,23 @@ public class MainActivity extends AppCompatActivity {
             for (TextBlock textBlock : textBlocks) {
                 if (textBlock != null && textBlock.getValue() != null) {
                     detectedText.append(textBlock.getValue());
-                    detectedText.append("\n");
+                    //detectedText.append("\n");
                 }
             }
 
-            String data=detectedText.toString();
-            data=data.replaceAll("[^0-9]","");
-            detectedTextView.setText(data);
+             //핸드폰 번호만 추출 . - 다 가능
+            String inputString = detectedText.toString();
+            String result = inputString.replaceAll("01(?:0|1|[6-9]).(\\d{4}).(\\d{4})","");
+            String phoneNumber = inputString.replace(result,"");
+
+            //텍스트뷰에보여줌
+            detectedTextView.setText(phoneNumber);
+
+            //전송전에 미리 .이나 - 삭제
+            if(phoneNumber.contains("-"))
+                phoneNumber=phoneNumber.replace("-","");
+            else if(phoneNumber.contains("."))
+                phoneNumber=phoneNumber.replace(".","");
 
 
         }
