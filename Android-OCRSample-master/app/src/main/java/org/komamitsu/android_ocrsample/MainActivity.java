@@ -185,14 +185,15 @@ public class MainActivity extends AppCompatActivity {
             String result = inputString.replaceAll("01(?:0|1|[6-9]).(\\d{4}).(\\d{4})","");
             String data = inputString.replace(result,"");
 
-            //텍스트뷰에보여줌
-            detectedTextView.setText(data);
-
             //전송전에 미리 .이나 - 삭제
             if(data.contains("-"))
                 data=data.replace("-","");
             else if(data.contains("."))
                 data=data.replace(".","");
+            //텍스트뷰에보여줌
+            detectedTextView.setText(data);
+
+
 
 
         }
