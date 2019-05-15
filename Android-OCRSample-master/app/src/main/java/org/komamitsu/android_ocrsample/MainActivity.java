@@ -172,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+            detectedTextView.setText("");
+
             StringBuilder detectedText = new StringBuilder();
             for (TextBlock textBlock : textBlocks) {
                 if (textBlock != null && textBlock.getValue() != null) {
@@ -194,9 +196,6 @@ public class MainActivity extends AppCompatActivity {
                 data=data.replace(",","");
             //텍스트뷰에보여줌
             detectedTextView.setText(data);
-
-
-
 
         }
         finally {
