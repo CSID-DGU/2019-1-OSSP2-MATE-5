@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
             //핸드폰 번호만 추출 . - 다 가능
             String inputString = detectedText.toString();
-            String result = inputString.replaceAll("01(?:0|1|[6-9]).(\\d{4}).(\\d{4})","");
+            String result = inputString.replaceAll("01(?:0|1|[6-9])[.-]?(\\d{3}|\\d{4})[.-]?(\\d{4})$","");
             String data = inputString.replace(result,"");
 
            //전송전에 미리 .이나 -이나 , 삭제
