@@ -22,6 +22,7 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
@@ -33,12 +34,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_GALLERY = 0;
@@ -132,11 +138,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                String name=detectedTextView.getText().toString();
+                // String name=detectedTextView.getText().toString();
+                String name = "djsdjlf";
                 String country=detectedTextView.getText().toString();
 
                 InsertData task=new InsertData();
-                task.execute("http://"+IP_ADDRESS+"/insert.php", name, country);
+                task.execute(name, country);
 
                 detectedTextView.setText("");
             }
@@ -182,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            //핸드폰 번호만 추출 . - 다 가능
             String inputString = detectedText.toString();
             String tmp = inputString;
             String data = new String();
@@ -197,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                 sb.append("");
             }
 
-           //전송전에 미리 .이나 -이나 , 삭제
+            //전송전에 미리 .이나 -이나 , 삭제
             if(data.contains("-"))
                 data=data.replace("-","");
             if(data.contains("."))
@@ -260,92 +266,58 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
     class InsertData extends AsyncTask<String, Void, String> {
-        ProgressDialog progressDialog;
+        ProgressDialog loading;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
-            progressDialog = ProgressDialog.show(MainActivity.this,
-                    "Please Wait", null, true, true);
+            loading = ProgressDialog.show(MainActivity.this, "Please Wait", null, true, true);
         }
-
 
         @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            progressDialog.dismiss();
-            detectedTextView.setText(result);
-            Log.d(tag, "POST response  - " + result);
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            loading.dismiss();
+            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
         }
-
 
         @Override
         protected String doInBackground(String... params) {
 
-            String name = (String)params[1];
-            String country = (String)params[2];
-
-            String serverURL = (String)params[0];
-            String postParameters = "name=" + name + "&country=" + country;
-
-
             try {
+                String Id = (String) params[0];
+                String Pw = (String) params[1];
 
-                URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                String link = "http://106.10.34.39/test.php";
+                String data = URLEncoder.encode("Id", "UTF-8") + "=" + URLEncoder.encode(Id, "UTF-8");
+                data += "&" + URLEncoder.encode("Pw", "UTF-8") + "=" + URLEncoder.encode(Pw, "UTF-8");
 
+                URL url = new URL(link);
+                URLConnection conn = url.openConnection();
 
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.connect();
+                conn.setDoOutput(true);
+                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
+                wr.write(data);
+                wr.flush();
 
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(postParameters.getBytes("UTF-8"));
-                outputStream.flush();
-                outputStream.close();
-
-
-                int responseStatusCode = httpURLConnection.getResponseCode();
-                Log.d(tag, "POST response code - " + responseStatusCode);
-
-                InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
-                    inputStream = httpURLConnection.getInputStream();
-                }
-                else{
-                    inputStream = httpURLConnection.getErrorStream();
-                }
-
-
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
                 StringBuilder sb = new StringBuilder();
                 String line = null;
 
-                while((line = bufferedReader.readLine()) != null){
+                // Read Server Response
+                while ((line = reader.readLine()) != null) {
                     sb.append(line);
+                    break;
                 }
-
-
-                bufferedReader.close();
-
-
                 return sb.toString();
-
-
             } catch (Exception e) {
-
-                Log.d(tag, "InsertData: Error ", e);
-
-                return new String("Error: " + e.getMessage());
+                return new String("Exception: " + e.getMessage());
             }
-
         }
     }
 }
