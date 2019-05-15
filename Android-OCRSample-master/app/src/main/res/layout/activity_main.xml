@@ -48,7 +48,7 @@
         android:background="#EEEEEE"
         android:scrollbars="vertical"
         android:text=""
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:letterSpacing="0.3"      
         />
 
