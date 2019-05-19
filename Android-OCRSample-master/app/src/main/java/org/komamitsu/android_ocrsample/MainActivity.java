@@ -138,8 +138,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                // String name=detectedTextView.getText().toString();
-                String name = "djsdjlf";
+                
+                String name=detectedTextView.getText().toString();
+               
                 String country=detectedTextView.getText().toString();
 
                 InsertData task=new InsertData();
