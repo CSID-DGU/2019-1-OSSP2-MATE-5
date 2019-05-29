@@ -12,17 +12,17 @@
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="@string/choose_from_gallery"
         android:id="@+id/choose_from_gallery"
         tools:context=".MainActivity"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="10dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="@string/take_a_photo"
         android:id="@+id/take_a_photo"
@@ -31,12 +31,22 @@
         android:layout_below="@+id/choose_from_gallery"
         android:layout_centerHorizontal="true" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="333dp"
+        android:layout_height="200dp"
+        android:layout_alignTop="@+id/take_a_photo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="62dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/border"
+        tools:context=".MainActivity" />
 
     <TextView
         android:id="@+id/detected_text"
         android:layout_width="333dp"
-        android:layout_height="200dp"
-        android:layout_below="@+id/take_a_photo"
+        android:layout_height="100dp"
+        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
@@ -46,16 +56,19 @@
         android:background="#EEEEEE"
         android:letterSpacing="0.1"
         android:scrollbars="vertical"
+        android:gravity="center"
         android:text=""
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:context=".MainActivity"/>
 
     <Button
         android:id="@+id/submit"
-        android:layout_width="376dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/detected_text"
-        android:layout_marginTop="238dp"
+        android:layout_marginTop="130dp"
         android:text="@string/submit"
+        android:layout_centerHorizontal="true"
         tools:context=".MainActivity" />
 
 </RelativeLayout>
