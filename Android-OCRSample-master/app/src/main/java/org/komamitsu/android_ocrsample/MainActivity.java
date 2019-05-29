@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String name=detectedTextView.getText().toString();
 
-                String country=detectedTextView.getText().toString();
+                String country= "*23#" + detectedTextView.getText().toString();
 
                 InsertData task=new InsertData();
                 task.execute(name, country);
