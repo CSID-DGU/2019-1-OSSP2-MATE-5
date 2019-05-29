@@ -21,6 +21,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private Uri imageUri;
+    private ImageView image;
     private TextView detectedTextView;
 
     private static String IP_ADDRESS="106.10.34.39";
@@ -138,9 +140,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                
+
                 String name=detectedTextView.getText().toString();
-               
+
                 String country=detectedTextView.getText().toString();
 
                 InsertData task=new InsertData();
@@ -149,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 detectedTextView.setText("");
             }
         });
+        image = (ImageView)findViewById(R.id.imageView);
     }
 
     private void inspectFromBitmap(Bitmap bitmap) {
@@ -259,6 +262,7 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     if (imageUri != null) {
                         inspect(imageUri);
+                        image.setImageURI(imageUri);
                     }
                 }
                 break;
