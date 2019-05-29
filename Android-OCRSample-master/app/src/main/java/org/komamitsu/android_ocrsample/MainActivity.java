@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 task.execute(name, country);
 
                 detectedTextView.setText("");
+                image.setImageResource(0);
             }
         });
         image = (ImageView)findViewById(R.id.imageView);
