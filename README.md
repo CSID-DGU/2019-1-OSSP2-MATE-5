@@ -18,6 +18,7 @@ OCR-based Illegal Advertising Block
 # | Original Opensource
 
 https://github.com/komamitsu/Android-OCRSample
+
 https://github.com/KayReid/Timer.git
 
 
