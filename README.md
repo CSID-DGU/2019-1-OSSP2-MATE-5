@@ -12,8 +12,11 @@ OCR-based Illegal Advertising Block
 2017112078   정지연
 
 2017112084   신성현
+![aa](https://user-images.githubusercontent.com/48276522/58679869-4bba0900-83a0-11e9-8b08-2439443ec0cf.PNG)
 
-<img width="326" alt="스크린샷 2019-05-10 오후 10 21 48" src="https://user-images.githubusercontent.com/48276633/57530488-4efa4000-7372-11e9-8af3-9554301512c4.png"> <img width="333" alt="스크린샷 2019-05-10 오후 8 23 00" src="https://user-images.githubusercontent.com/48276633/57528911-82d36680-736e-11e9-938c-2edb0682f672.png"> <img width="429" alt="스크린샷 2019-05-31 오후 12 31 28" src="https://user-images.githubusercontent.com/48276633/58679833-16adb680-83a0-11e9-9a62-d47b43ed3943.png">
+<img width="429" alt="스크린샷 2019-05-31 오후 12 31 28" src="https://user-images.githubusercontent.com/48276633/58679833-16adb680-83a0-11e9-9a62-d47b43ed3943.png">
+
+
 
 # | Original Opensource
 
