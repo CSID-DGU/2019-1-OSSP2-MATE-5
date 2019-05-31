@@ -14,7 +14,7 @@ OCR-based Illegal Advertising Block
 2017112084   신성현
 
 
-![capt](https://user-images.githubusercontent.com/48276522/58680236-e49d5400-83a1-11e9-9a7e-8fb790e10569.PNG)
+![capt](https://user-images.githubusercontent.com/48276522/58680281-1c0c0080-83a2-11e9-856c-727d740f77fc.PNG)
 
 
 
