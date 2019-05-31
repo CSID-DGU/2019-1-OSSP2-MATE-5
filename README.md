@@ -22,7 +22,7 @@ OCR-based Illegal Advertising Block
 
 https://github.com/komamitsu/Android-OCRSample
 
-https://github.com/KayReid/Timer.git
+https://github.com/KayReid/Timer
 
 
 스탑워치랑 전화거는 거 합쳤고
