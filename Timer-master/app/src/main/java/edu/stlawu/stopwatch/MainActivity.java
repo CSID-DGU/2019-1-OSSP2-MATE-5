@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -18,12 +19,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText no;
+    TextView no;
 
     // Define variables for our views
     private TextView tv_count = null;
@@ -37,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
     private AudioAttributes aa = null;
     private SoundPool soundPool = null;
     private int bloopSound = 0;
+
+    String url = "http://106.10.34.39/try.php";
+    public GettingPHP gPHP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
                 int permission= ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.CALL_PHONE);
                 if(permission== PackageManager.PERMISSION_GRANTED)
                 {
+                    gPHP = new GettingPHP();
+                    no = (TextView)findViewById(R.id.no);
+                    gPHP.execute(url);
+
                     callNumber();
                 }
                 else
@@ -110,8 +127,6 @@ public class MainActivity extends AppCompatActivity {
         Uri uri=Uri.parse("tel:"+telno);
         Intent i=new Intent(Intent.ACTION_CALL,uri);
         startActivity(i);
-
-
     }
 
 
@@ -179,5 +194,55 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
+
+    class GettingPHP extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            StringBuilder jsonHtml = new StringBuilder();
+            try {
+                URL phpUrl = new URL(params[0]);
+                HttpURLConnection conn = (HttpURLConnection)phpUrl.openConnection();
+
+                if ( conn != null ) {
+                    conn.setConnectTimeout(10000);
+                    conn.setUseCaches(false);
+
+                    if ( conn.getResponseCode() == HttpURLConnection.HTTP_OK ) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+                        while ( true ) {
+                            String line = br.readLine();
+                            if ( line == null )
+                                break;
+                            jsonHtml.append(line + "\n");
+                        }
+                        br.close();
+                    }
+                    conn.disconnect();
+                }
+            } catch ( Exception e ) {
+                e.printStackTrace();
+            }
+            return jsonHtml.toString();
+        }
+        protected void onPostExecute(String str) {
+            try {
+                // PHP에서 받아온 JSON 데이터를 JSON오브젝트로 변환
+                JSONObject jObject = new JSONObject(str);
+                // results라는 key는 JSON배열로 되어있다.
+                JSONArray results = jObject.getJSONArray("results");
+                String zz="";
+                int result_num = results.length();
+                Random random = new Random();
+                int i=random.nextInt(result_num);
+                JSONObject temp = results.getJSONObject(i);
+                zz += temp.get("number");
+                System.out.println(zz);
+                no.setText(zz);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
 ;
