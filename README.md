@@ -1,22 +1,23 @@
 # OCR-based Illegal Advertising Block
 using Text Recognition API Overview
+===============================================
 
-# | Developer
+## Developer
 
- 신유경
+ > 신유경
 
- 이주원
+ > 이주원
 
- 정지연
+ > 정지연
 
- 신성현
+ > 신성현
 
 
 ![capt](https://user-images.githubusercontent.com/48276522/58680281-1c0c0080-83a2-11e9-856c-727d740f77fc.PNG)
 
 
 
-# | Original Opensource
+## Original Opensource
 
 https://github.com/komamitsu/Android-OCRSample
 
