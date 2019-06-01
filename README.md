@@ -18,7 +18,7 @@ using Text Recognition API Overview
 
 ## Original Opensource
 
-https://github.com/komamitsu/Android-OCRSample
+https://github.com/komamitsu/Android-OCRSample<br/>
 https://github.com/KayReid/Timer
 
 
