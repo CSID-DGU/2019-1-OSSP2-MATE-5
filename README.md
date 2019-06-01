@@ -1,4 +1,4 @@
-# OCR-based Illegal Advertising Block <br/>(using Text Recognition API Overview)
+# OCR-based Illegal Advertising Block <br/><b>(using Text Recognition API Overview)<b/>
 <br/>
 
 > ## Developer
