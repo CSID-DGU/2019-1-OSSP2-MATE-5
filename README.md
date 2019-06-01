@@ -1,4 +1,4 @@
-> # OCR-based Illegal Advertising Block
+* # OCR-based Illegal Advertising Block
     using Text Recognition API Overview
 <br/>
 
