@@ -1,7 +1,7 @@
 # OCR-based Illegal Advertising Block
 using Text Recognition API Overview
 
-## Developer
+> ## Developer
 
  * 신유경<br/>
  * 이주원<br/>
@@ -13,7 +13,7 @@ using Text Recognition API Overview
 
 
 
-## Original Opensource
+> ## Original Opensource
 
 https://github.com/komamitsu/Android-OCRSample<br/>
 https://github.com/KayReid/Timer
