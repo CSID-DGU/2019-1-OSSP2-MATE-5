@@ -3,13 +3,10 @@ using Text Recognition API Overview
 
 ## Developer
 
- * 신유경
-
- * 이주원
-
- * 정지연
-
- * 신성현
+ * 신유경<br/>
+ * 이주원<br/>
+ * 정지연<br/>
+ * 신성현<br/>
 
 
 ![capt](https://user-images.githubusercontent.com/48276522/58680281-1c0c0080-83a2-11e9-856c-727d740f77fc.PNG)
