@@ -2,7 +2,7 @@
     using Text Recognition API Overview
 <br/>
 
-> ## Developer
+* ## Developer
 
  * 신유경<br/>
  * 이주원<br/>
@@ -15,7 +15,7 @@
 
 
 
-> ## Original Opensource
+* ## Original Opensource
 
 https://github.com/komamitsu/Android-OCRSample<br/>
 https://github.com/KayReid/Timer
