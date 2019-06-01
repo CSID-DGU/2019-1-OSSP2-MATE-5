@@ -16,9 +16,10 @@ using Text Recognition API Overview
 
 
 
-## > Original Opensource
+## Original Opensource
 
-https://github.com/komamitsu/Android-OCRSample \nhttps://github.com/KayReid/Timer
+https://github.com/komamitsu/Android-OCRSample
+https://github.com/KayReid/Timer
 
 
 스탑워치랑 전화거는 거 합쳤고
