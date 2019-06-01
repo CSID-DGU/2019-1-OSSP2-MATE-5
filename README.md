@@ -3,16 +3,17 @@
 
 > ## Developer
 
- * 신유경<br/>
- * 이주원<br/>
- * 정지연<br/>
- * 신성현<br/>
+    * 신유경<br/>
+    * 이주원<br/>
+    * 정지연<br/>
+    * 신성현<br/><br/>
+
+> ## View
+
+![capt](https://user-images.githubusercontent.com/48276522/58680281-1c0c0080-83a2-11e9-856c-727d740f77fc.PNG)<br/><br/>
 
 
-![capt](https://user-images.githubusercontent.com/48276522/58680281-1c0c0080-83a2-11e9-856c-727d740f77fc.PNG)<br/>
 
-
-<br/>
 > ## Original Opensource
 
 https://github.com/komamitsu/Android-OCRSample<br/>
