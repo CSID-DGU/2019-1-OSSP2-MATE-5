@@ -1,4 +1,4 @@
-# OCR-based Illegal Advertising Block
+> # OCR-based Illegal Advertising Block
 using Text Recognition API Overview
 
 > ## Developer
@@ -9,7 +9,7 @@ using Text Recognition API Overview
  * 신성현<br/>
 
 
-![capt](https://user-images.githubusercontent.com/48276522/58680281-1c0c0080-83a2-11e9-856c-727d740f77fc.PNG)
+![capt](https://user-images.githubusercontent.com/48276522/58680281-1c0c0080-83a2-11e9-856c-727d740f77fc.PNG)<br/>
 
 
 
