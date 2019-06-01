@@ -1,5 +1,5 @@
 > # OCR-based Illegal Advertising Block
-using Text Recognition API Overview
+    using Text Recognition API Overview
 
 > ## Developer
 
@@ -12,7 +12,7 @@ using Text Recognition API Overview
 ![capt](https://user-images.githubusercontent.com/48276522/58680281-1c0c0080-83a2-11e9-856c-727d740f77fc.PNG)<br/>
 
 
-
+<br/>
 > ## Original Opensource
 
 https://github.com/komamitsu/Android-OCRSample<br/>
