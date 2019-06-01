@@ -1,7 +1,7 @@
 # OCR-based Illegal Advertising Block
 using Text Recognition API Overview
 
-## > Developer
+> Developer
 
  신유경
 
