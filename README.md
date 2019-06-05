@@ -8,10 +8,10 @@
  * 정지연<br/>
  * 신성현<br/><br/>
  
- > ## Develope Environment
+> ## Develope Environment
 
- * Ubuntu 16.04<br/>
- * Android Studio<br/>
+ * Ubuntu 16.04(for SERVER)<br/>
+ * Android Studio<br/><br/>
 
 > ## View
 
