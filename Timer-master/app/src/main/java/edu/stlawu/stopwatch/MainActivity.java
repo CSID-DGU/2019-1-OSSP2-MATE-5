@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private SoundPool soundPool = null;
     private int bloopSound = 0;
 
-    String url = "http://106.10.34.39/try.php";
+    String url = "http://210.94.194.82:50080/phone.php";
     public GettingPHP gPHP;
 
     @Override
@@ -195,10 +195,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class GettingPHP extends AsyncTask<String, Integer, String> {
+
+
+    class GettingPHP extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            StringBuilder jsonHtml = new StringBuilder();
+            String data = "";
             try {
                 URL phpUrl = new URL(params[0]);
                 HttpURLConnection conn = (HttpURLConnection)phpUrl.openConnection();
@@ -213,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
                             String line = br.readLine();
                             if ( line == null )
                                 break;
-                            jsonHtml.append(line + "\n");
+                            data+=line;
                         }
                         br.close();
                     }
@@ -222,22 +224,20 @@ public class MainActivity extends AppCompatActivity {
             } catch ( Exception e ) {
                 e.printStackTrace();
             }
-            return jsonHtml.toString();
+            return data;
         }
+
         protected void onPostExecute(String str) {
             try {
-                // PHP에서 받아온 JSON 데이터를 JSON오브젝트로 변환
-                JSONObject jObject = new JSONObject(str);
-                // results라는 key는 JSON배열로 되어있다.
-                JSONArray results = jObject.getJSONArray("results");
-                String zz="";
+                JSONArray results = new JSONArray(str);
+
                 int result_num = results.length();
                 Random random = new Random();
                 int i=random.nextInt(result_num);
                 JSONObject temp = results.getJSONObject(i);
-                zz += temp.get("number");
-                System.out.println(zz);
-                no.setText(zz);
+                String randomPhoneNumber = temp.get("phonenum").toString();
+                System.out.println(randomPhoneNumber);
+                no.setText(randomPhoneNumber);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -245,4 +245,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-;
