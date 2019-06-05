@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView image;
     private TextView detectedTextView;
 
-    private static String IP_ADDRESS="106.10.34.39";
+    private static String IP_ADDRESS="210.94.194.82:50080"; //insert.php만들자 (원래 test.php)
     private static String tag="phptest";
 
     @Override
