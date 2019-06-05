@@ -7,6 +7,11 @@
  * 이주원<br/>
  * 정지연<br/>
  * 신성현<br/><br/>
+ 
+ > ## Develope Environment
+
+ * Ubuntu 16.04<br/>
+ * Android Studio<br/>
 
 > ## View
 
