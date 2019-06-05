@@ -1,5 +1,7 @@
-package edu.stlawu.stopwatch;
+package com.example.kch.registration_v5;
 
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
@@ -12,7 +14,6 @@ import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +33,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
-
     TextView no;
 
     // Define variables for our views
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private SoundPool soundPool = null;
     private int bloopSound = 0;
 
-    String url = "http://210.94.194.82:50080/phone.php";
+    String url = "http://106.10.34.39/try.php";
     public GettingPHP gPHP;
 
     @Override
@@ -62,24 +62,21 @@ public class MainActivity extends AppCompatActivity {
         this.bt_stop = findViewById(R.id.bt_stop);
         this.bt_reset = findViewById(R.id.bt_reset);
 
-        no=findViewById(R.id.no);
+        no = findViewById(R.id.no);
         // start button enables timer
         this.bt_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Check if the permission already exits
-                int permission= ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.CALL_PHONE);
-                if(permission== PackageManager.PERMISSION_GRANTED)
-                {
+                int permission = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE);
+                if (permission == PackageManager.PERMISSION_GRANTED) {
                     gPHP = new GettingPHP();
-                    no = (TextView)findViewById(R.id.no);
+                    no = (TextView) findViewById(R.id.no);
                     gPHP.execute(url);
 
                     callNumber();
-                }
-                else
-                {
-                    ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.CALL_PHONE},121);
+                } else {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 121);
                 }
                 bt_start.setEnabled(false);
                 bt_stop.setEnabled(true);
@@ -104,28 +101,39 @@ public class MainActivity extends AppCompatActivity {
 
         // reset button
         this.bt_reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bt_start.setEnabled(true);
-                bt_start.setText("Start");
-                bt_stop.setEnabled(false);
-                // reset count
-                getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
-                ctr.cancel();
-                // set text view back to zero
-                MainActivity.this.tv_count.setText("00:00.0");
-            }
-        }
+                                             @Override
+                                             public void onClick(View v) {
+                                                 bt_start.setEnabled(true);
+                                                 bt_start.setText("Start");
+                                                 bt_stop.setEnabled(false);
+                                                 // reset count
+                                                 getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
+                                                 ctr.cancel();
+                                                 // set text view back to zero
+                                                 MainActivity.this.tv_count.setText("00:00.0");
+                                             }
+                                         }
 
 
         );
 
 
     }
-    void callNumber () {
-        String telno=no.getText().toString();
-        Uri uri=Uri.parse("tel:"+telno);
-        Intent i =new Intent(Intent.ACTION_CALL,uri);
+
+    void callNumber() {
+        String telno = no.getText().toString();
+        Uri uri = Uri.parse("tel:" + telno);
+        Intent i = new Intent(Intent.ACTION_CALL, uri);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         startActivity(i);
     }
 
@@ -188,19 +196,17 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                        set_display();
-                        count++;
+                    set_display();
+                    count++;
                 }
             });
         }
     }
 
-
-
-    class GettingPHP extends AsyncTask<String, Void, String> {
+    class GettingPHP extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... params) {
-            String data = "";
+            StringBuilder jsonHtml = new StringBuilder();
             try {
                 URL phpUrl = new URL(params[0]);
                 HttpURLConnection conn = (HttpURLConnection)phpUrl.openConnection();
@@ -215,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                             String line = br.readLine();
                             if ( line == null )
                                 break;
-                            data+=line;
+                            jsonHtml.append(line + "\n");
                         }
                         br.close();
                     }
@@ -224,24 +230,27 @@ public class MainActivity extends AppCompatActivity {
             } catch ( Exception e ) {
                 e.printStackTrace();
             }
-            return data;
+            return jsonHtml.toString();
         }
-
         protected void onPostExecute(String str) {
             try {
-                JSONArray results = new JSONArray(str);
-
+                // PHP에서 받아온 JSON 데이터를 JSON오브젝트로 변환
+                JSONObject jObject = new JSONObject(str);
+                // results라는 key는 JSON배열로 되어있다.
+                JSONArray results = jObject.getJSONArray("results");
+                String zz="";
                 int result_num = results.length();
                 Random random = new Random();
                 int i=random.nextInt(result_num);
                 JSONObject temp = results.getJSONObject(i);
-                String randomPhoneNumber = temp.get("phonenum").toString();
-                System.out.println(randomPhoneNumber);
-                no.setText(randomPhoneNumber);
+                zz += temp.get("number");
+                System.out.println(zz);
+                no.setText(zz);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
+
 
 }
