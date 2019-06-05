@@ -1,8 +1,6 @@
 package edu.stlawu.stopwatch;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
@@ -15,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -230,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String str) {
             try {
                 JSONArray results = new JSONArray(str);
-
+                //json [] 형태를 string으로
                 int result_num = results.length();
                 Random random = new Random();
                 int i=random.nextInt(result_num);
