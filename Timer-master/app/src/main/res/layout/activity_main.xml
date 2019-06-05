@@ -55,8 +55,8 @@
 
         <TextView
             android:id="@+id/tv_count"
-            android:layout_width="140dp"
-            android:layout_height="70dp"
+            android:layout_width="135dp"
+            android:layout_height="60dp"
             android:text="00:00:0"
             android:textSize="40dp"
             android:layout_marginTop="30dp"

@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
     void callNumber () {
         String telno=no.getText().toString();
         Uri uri=Uri.parse("tel:"+telno);
-        Intent i=new Intent(Intent.ACTION_CALL,uri);
+        Intent i =new Intent(Intent.ACTION_CALL,uri);
         startActivity(i);
     }
 
