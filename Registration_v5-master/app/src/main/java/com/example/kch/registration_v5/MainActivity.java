@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private SoundPool soundPool = null;
     private int bloopSound = 0;
 
-    String url = "http://106.10.34.39/try.php";
+    String url = "http://210.94.194.82:50080/phone.php";
     public GettingPHP gPHP;
 
     @Override
@@ -103,16 +103,16 @@ public class MainActivity extends AppCompatActivity {
         this.bt_reset.setOnClickListener(new View.OnClickListener() {
                                              @Override
                                              public void onClick(View v) {
-                                                 bt_start.setEnabled(true);
-                                                 bt_start.setText("Start");
-                                                 bt_stop.setEnabled(false);
-                                                 // reset count
-                                                 getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
-                                                 ctr.cancel();
-                                                 // set text view back to zero
-                                                 MainActivity.this.tv_count.setText("00:00.0");
-                                             }
-                                         }
+              bt_start.setEnabled(true);
+              bt_start.setText("Start");
+              bt_stop.setEnabled(false);
+              // reset count
+              getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
+               ctr.cancel();
+               // set text view back to zero
+               MainActivity.this.tv_count.setText("00:00.0");
+          }
+         }
 
 
         );

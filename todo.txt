@@ -1,4 +1,5 @@
-1. call permission allow �α����� �� üũ�ǵ��� �ٲٱ�.  ==> �׷��� start ������ �ٷ� ��ȭ�ɸ��鼭 ��ž��ġ �ǵ���
-2. reset button�� �ð� ��� db�� ���۵ǵ���
-3. ��ȭ��ȣ db���� �ҷ����°Ÿ� start ��ư�̶� �ڵ����� 3�ʸ��� Ŭ���ǵ��� �ٲٱ�.
-4. ó��ȭ�鿡�� reset�̶� stop������ �������� �Ǵ°� ��ġ��
+1. call permission allow 로그인할 때 체크되도록 바꾸기.  ==> 그래서 start 누르면 바로 전화걸리면서 스탑워치 되도록
+2. reset button이 시간 기록 db에 전송되도록
+3. 자동으로 3초마다 전화되도록 바꾸기
+4. 처음화면에서 reset이랑 stop누르면 강제종료 되는거 고치기
+5. new server, db connection need to be merged with registration
