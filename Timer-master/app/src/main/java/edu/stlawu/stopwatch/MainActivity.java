@@ -107,10 +107,10 @@ public class MainActivity extends AppCompatActivity {
                 bt_start.setText("Start");
                 bt_stop.setEnabled(false);
                 // reset count
-                getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
+                //getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
                 ctr.cancel();
                 // set text view back to zero
-                MainActivity.this.tv_count.setText("00:00.0");
+                //MainActivity.this.tv_count.setText("00:00.0");
             }
         }
 
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         // getint needs a default value
         int count = getPreferences(MODE_PRIVATE).getInt("COUNT", 0);
 
-        this.tv_count.setText(String.format("%02d:%02d.%d", count / 600, (count / 10) % 60, count % 10));
+        this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", count/3600, count / 600, (count / 10) % 60, count % 10));
         System.out.println(count);
 
         // create timer
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void set_display(){
-        this.tv_count.setText(String.format("%02d:%02d.%d", ctr.count / 600, (ctr.count / 10 ) % 60, ctr.count % 10));
+       this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", ctr.count/3600, ctr.count / 600, (ctr.count / 10) % 60, ctr.count % 10));
 
     }
 
@@ -225,19 +225,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String str) {
-            try {
-                JSONArray results = new JSONArray(str);
-                //json [] 형태를 string으로
-                int result_num = results.length();
-                Random random = new Random();
-                int i=random.nextInt(result_num);
-                JSONObject temp = results.getJSONObject(i);
-                String randomPhoneNumber = temp.get("phonenum").toString();
-                System.out.println(randomPhoneNumber);
-                no.setText(randomPhoneNumber);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+                try {
+                    JSONArray results = new JSONArray(str);
+                    //json [] 형태를 string으로
+                    int result_num = results.length();
+                    Random random = new Random();
+                    int i=random.nextInt(result_num);
+                    JSONObject temp = results.getJSONObject(i);
+                    String randomPhoneNumber = temp.get("phonenum").toString();
+                    System.out.println(randomPhoneNumber);
+                    no.setText(randomPhoneNumber);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
         }
     }
 
