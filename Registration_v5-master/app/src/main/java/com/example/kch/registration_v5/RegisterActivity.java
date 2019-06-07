@@ -25,8 +25,6 @@ public class RegisterActivity extends AppCompatActivity {
     private Spinner spinner;
     private String userID;
     private String userPassword;
-    private String userGender;
-    private String userMajor;
     private String userEmail;
     private AlertDialog dialog;
     private boolean validate = false;
@@ -44,19 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText idText = (EditText)findViewById(R.id.idText);
         final EditText passwordText = (EditText)findViewById(R.id.passwordText);
         final EditText emailText = (EditText)findViewById(R.id.emailText);
-
-        RadioGroup genderGroup = (RadioGroup)findViewById(R.id.genderGroup);
-        int genderGroupID = genderGroup.getCheckedRadioButtonId();
-    //    userGender = ((RadioButton)findViewById(genderGroupID)).getText().toString();//초기화 값을 지정해줌
-
-        //라디오버튼이 눌리면 값을 바꿔주는 부분
-//        genderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-//                RadioButton genderButton = (RadioButton)findViewById(i);
-//                userGender = genderButton.getText().toString();
-//            }
-//        });
 
         //회원가입시 아이디가 사용가능한지 검증하는 부분
         final Button validateButton = (Button)findViewById(R.id.validateButton);
@@ -128,7 +113,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String userID = idText.getText().toString();
                 String userPassword = passwordText.getText().toString();
-                String userMajor = spinner.getSelectedItem().toString();
                 String userEmail = emailText.getText().toString();
 
                 //ID 중복체크를 했는지 확인함
@@ -142,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 //한칸이라도 빠뜨렸을 경우
-                if(userID.equals("")||userPassword.equals("")||userMajor.equals("")||userEmail.equals("")||userGender.equals("")){
+                if(userID.equals("")||userPassword.equals("")||userEmail.equals("")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                     dialog = builder.setMessage("Empty text exist")
                             .setNegativeButton("OK", null)
@@ -182,7 +166,7 @@ public class RegisterActivity extends AppCompatActivity {
                 };//Response.Listener 완료
 
                 //Volley 라이브러리를 이용해서 실제 서버와 통신을 구현하는 부분
-                RegisterRequest registerRequest = new RegisterRequest(userID, userPassword, userGender, userMajor, userEmail, responseListener);
+                RegisterRequest registerRequest = new RegisterRequest(userID, userPassword, userEmail, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
 
