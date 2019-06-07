@@ -29,6 +29,8 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView image;
     private TextView detectedTextView;
 
-    private static String IP_ADDRESS="210.94.194.82:50080"; //insert.php만들자 (원래 test.php)
+    private static String IP_ADDRESS="210.94.194.82:50080";
     private static String tag="phptest";
 
     @Override
@@ -141,12 +143,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                String name=detectedTextView.getText().toString();
+                String phonenum=detectedTextView.getText().toString();
 
-                String country= "*23#" + detectedTextView.getText().toString();
 
                 InsertData task=new InsertData();
-                task.execute(name, country);
+                task.execute(phonenum);
 
                 detectedTextView.setText("");
                 image.setImageResource(0);
@@ -274,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    class InsertData extends AsyncTask<String, Void, String> {
+    class InsertData extends AsyncTask<String, String, String> {
         ProgressDialog loading;
 
         @Override
@@ -288,39 +289,37 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(s);
             loading.dismiss();
             Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected String doInBackground(String... params) {
 
             try {
-                String Id = (String) params[0];
-                String Pw = (String) params[1];
+                String phonenum = (String) params[0];
 
-                String link = "http://106.10.34.39/test.php";
-                String data = URLEncoder.encode("Id", "UTF-8") + "=" + URLEncoder.encode(Id, "UTF-8");
-                data += "&" + URLEncoder.encode("Pw", "UTF-8") + "=" + URLEncoder.encode(Pw, "UTF-8");
+                String link = "http://210.94.194.82:50080/insertPhone.php";
+
+                JSONObject data = new JSONObject();
+
+                data.put("phone", phonenum);
+
 
                 URL url = new URL(link);
-                URLConnection conn = url.openConnection();
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-type", "application/json; utf-8");
 
                 conn.setDoOutput(true);
                 OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-
-                wr.write(data);
+                wr.write(data.toString());
                 wr.flush();
+                wr.close();
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                int responseCode = conn.getResponseCode();
+                System.out.println(responseCode);
 
-                StringBuilder sb = new StringBuilder();
-                String line = null;
-
-                // Read Server Response
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line);
-                    break;
-                }
-                return sb.toString();
+                return "";
             } catch (Exception e) {
                 return new String("Exception: " + e.getMessage());
             }
