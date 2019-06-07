@@ -12,7 +12,9 @@
  
 > ## Development Environment
 
- * Ubuntu 16.04(for SERVER)<br/>
+ * Ubuntu 16.04<br/>
+ * Apache2<br/>
+ * MySQL<br/>
  * Android Studio<br/><br/>
 
 > ## View
