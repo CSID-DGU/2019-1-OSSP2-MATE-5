@@ -1,5 +1,7 @@
 package com.example.kch.registration_v5;
 
+import android.app.Activity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.Manifest;
@@ -19,6 +21,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
     private Button bt_reset = null;
     private Timer t = null;
     private Counter ctr = null; //Timertask
+    private AlertDialog dialog;
+
+
+    public String userID;
 
     // audio variables
     private AudioAttributes aa = null;
@@ -62,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
         this.bt_stop = findViewById(R.id.bt_stop);
         this.bt_reset = findViewById(R.id.bt_reset);
 
+        bt_stop.setEnabled(false);
+        bt_reset.setEnabled(false);
+
         no = findViewById(R.id.no);
         // start button enables timer
         this.bt_start.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 121);
                 }
+
                 bt_start.setEnabled(false);
                 bt_stop.setEnabled(true);
                 bt_reset.setEnabled(true);
@@ -98,23 +113,65 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         // reset button
         this.bt_reset.setOnClickListener(new View.OnClickListener() {
+                                             int hour=ctr.count / 36000;
+                                             String hour_s=String.format("%02d", hour);
+                                             int min=(ctr.count / 600)%60;
+                                             String min_s=String.format("%02d", min);
+                                             int sec=(ctr.count / 10) % 60;
+                                             String sec_s=String.format("%02d", sec);
+
+                                             String userTime=hour_s+min_s+sec_s;
+                                             //    int userTime=Integer.parseInt(time);
+
                                              @Override
                                              public void onClick(View v) {
-              bt_start.setEnabled(true);
-              bt_start.setText("Start");
-              bt_stop.setEnabled(false);
-              // reset count
-              getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
-               ctr.cancel();
-               // set text view back to zero
-               MainActivity.this.tv_count.setText("00:00.0");
-          }
-         }
+                                                 bt_start.setEnabled(true);
+                                                 bt_start.setText("Start");
+                                                 bt_stop.setEnabled(false);
+                                                 // reset count
+                                                 //getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
+                                                 ctr.cancel();
+                                                 // set text view back to zero
+                                                 //MainActivity.this.tv_count.setText("00:00.0");
+                                                 Response.Listener<String> responseLiner = new Response.Listener<String>(){
+
+                                                     @Override
+                                                     public void onResponse(String response) {
+                                                         try{
+                                                             JSONObject jsonResponse = new JSONObject(response);
+                                                             boolean success = jsonResponse.getBoolean("success");
+
+                                                             if(success){
+                                                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                                                 dialog = builder.setMessage("Transfer Successful")
+                                                                         .setPositiveButton("확인", null).create();
+                                                                 dialog.show();
+                                                                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                                                 MainActivity.this.startActivity(intent);
+                                                                 finish();
+                                                             }else {
+                                                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                                                dialog = builder.setMessage("Transfer Failed")
+                                                                      .setNegativeButton("다시시도", null).create();
+                                                                dialog.show();
+                                                         }
+
+                                                         }catch (Exception e){
+                                                             e.printStackTrace();
+                                                         }
+                                                     }
+                                                 };
+
+                                                 TimeRequest TimeRequest = new TimeRequest(userID, userTime, responseLiner);
+                                                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+                                                 queue.add(TimeRequest);
 
 
+                                             }
+
+                                         }
         );
 
 
@@ -146,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
         // getint needs a default value
         int count = getPreferences(MODE_PRIVATE).getInt("COUNT", 0);
 
-        this.tv_count.setText(String.format("%02d:%02d.%d", count / 600, (count / 10) % 60, count % 10));
+        this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", count/36000, (count / 600)%60, (count / 10) % 60, count % 10));
         System.out.println(count);
 
         // create timer
@@ -166,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void set_display(){
-        this.tv_count.setText(String.format("%02d:%02d.%d", ctr.count / 600, (ctr.count / 10 ) % 60, ctr.count % 10));
+        this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", ctr.count/36000, (ctr.count / 600)%60, (ctr.count / 10) % 60, ctr.count % 10));
 
     }
 
@@ -203,10 +260,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class GettingPHP extends AsyncTask<String, Integer, String> {
+    class GettingPHP extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            StringBuilder jsonHtml = new StringBuilder();
+            String data = "";
             try {
                 URL phpUrl = new URL(params[0]);
                 HttpURLConnection conn = (HttpURLConnection)phpUrl.openConnection();
@@ -221,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
                             String line = br.readLine();
                             if ( line == null )
                                 break;
-                            jsonHtml.append(line + "\n");
+                            data+=line;
                         }
                         br.close();
                     }
@@ -230,27 +287,24 @@ public class MainActivity extends AppCompatActivity {
             } catch ( Exception e ) {
                 e.printStackTrace();
             }
-            return jsonHtml.toString();
+            return data;
         }
+
         protected void onPostExecute(String str) {
             try {
-                // PHP에서 받아온 JSON 데이터를 JSON오브젝트로 변환
-                JSONObject jObject = new JSONObject(str);
-                // results라는 key는 JSON배열로 되어있다.
-                JSONArray results = jObject.getJSONArray("results");
-                String zz="";
+                JSONArray results = new JSONArray(str);
+                //json [] 형태를 string으로
                 int result_num = results.length();
                 Random random = new Random();
                 int i=random.nextInt(result_num);
                 JSONObject temp = results.getJSONObject(i);
-                zz += temp.get("number");
-                System.out.println(zz);
-                no.setText(zz);
+                String randomPhoneNumber = temp.get("phonenum").toString();
+                System.out.println(randomPhoneNumber);
+                no.setText(randomPhoneNumber);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
-
 
 }

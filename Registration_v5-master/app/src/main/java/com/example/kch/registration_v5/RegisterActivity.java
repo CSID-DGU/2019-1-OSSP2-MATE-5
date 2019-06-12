@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
                             if(success){//사용할 수 있는 아이디라면
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                dialog = builder.setMessage("you can use ID")
+                                dialog = builder.setMessage("You can use ID")
                                         .setPositiveButton("OK", null)
                                         .create();
                                 dialog.show();
@@ -85,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 validateButton.setBackgroundColor(getResources().getColor(R.color.colorGray));
                             }else{//사용할 수 없는 아이디라면
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                dialog = builder.setMessage("alreay used ID")
+                                dialog = builder.setMessage("Already used ID")
                                         .setNegativeButton("OK", null)
                                         .create();
                                 dialog.show();

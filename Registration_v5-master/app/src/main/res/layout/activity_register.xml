@@ -13,7 +13,7 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="230dp"
             android:orientation="vertical"
             android:background="@color/colorPrimary"
             >
@@ -22,11 +22,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Member Registration"
+                android:text="Join Membership"
                 android:textColor="#ffffff"
                 android:textSize="30dp"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="100dp"
                 android:layout_marginBottom="10dp"
                 />
         </LinearLayout>
@@ -40,7 +40,7 @@
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="60dp"
                 android:layout_gravity="center"
                 >
 
@@ -145,7 +145,7 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorWarning"
                 android:text="Register"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"

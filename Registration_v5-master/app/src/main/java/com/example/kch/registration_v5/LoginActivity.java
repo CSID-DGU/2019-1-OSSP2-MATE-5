@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(success){
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                dialog = builder.setMessage("로그인에 성공했습니다")
+                                dialog = builder.setMessage("Login Success")
                                         .setPositiveButton("확인", null)
                                         .create();
                                 dialog.show();
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                                 finish();
                             }else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                dialog = builder.setMessage("계정을 다시 확인하세요")
+                                dialog = builder.setMessage("Check your ID or PASSWORD")
                                         .setNegativeButton("다시시도", null)
                                         .create();
                                 dialog.show();

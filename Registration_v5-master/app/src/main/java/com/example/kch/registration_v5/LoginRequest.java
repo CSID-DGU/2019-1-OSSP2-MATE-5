@@ -7,10 +7,6 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by kch on 2018. 7. 23..
- */
-
 public class LoginRequest extends StringRequest{
 
     final static private String URL = "http://210.94.194.82:50080//UserLogin.php";

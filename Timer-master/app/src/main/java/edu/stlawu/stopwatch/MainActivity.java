@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         this.bt_stop = findViewById(R.id.bt_stop);
         this.bt_reset = findViewById(R.id.bt_reset);
 
+        bt_stop.setEnabled(false);
+        bt_reset.setEnabled(false);
+
         no=findViewById(R.id.no);
         // start button enables timer
         this.bt_start.setOnClickListener(new View.OnClickListener() {
