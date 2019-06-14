@@ -49,17 +49,15 @@ public class MainActivity extends AppCompatActivity {
     private Button bt_reset = null;
     private Timer t = null;
     private Counter ctr = null; //Timertask
-    private AlertDialog dialog;
 
-
-    public String userID;
+    String userID=LoginActivity.userID;
 
     // audio variables
     private AudioAttributes aa = null;
     private SoundPool soundPool = null;
     private int bloopSound = 0;
 
-    String url = "http://210.94.194.82:50080/phone.php";
+    String url = "http://hssoft.kr:9878/phone.php";
     public GettingPHP gPHP;
 
     @Override
@@ -92,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 121);
                 }
-
                 bt_start.setEnabled(false);
                 bt_stop.setEnabled(true);
                 bt_reset.setEnabled(true);
@@ -113,65 +110,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // reset button
+
+        // SEND button
         this.bt_reset.setOnClickListener(new View.OnClickListener() {
-                                             int hour=ctr.count / 36000;
-                                             String hour_s=String.format("%02d", hour);
-                                             int min=(ctr.count / 600)%60;
-                                             String min_s=String.format("%02d", min);
-                                             int sec=(ctr.count / 10) % 60;
-                                             String sec_s=String.format("%02d", sec);
+             @Override
+             public void onClick(View v) {
+                 int hour = ctr.count / 36000;
+                 String hour_s = String.format("%02d", hour);
+                 int min = (ctr.count / 600) % 60;
+                 String min_s = String.format("%02d", min);
+                 int sec = (ctr.count / 10) % 60;
+                 String sec_s = String.format("%02d", sec);
 
-                                             String userTime=hour_s+min_s+sec_s;
-                                             //    int userTime=Integer.parseInt(time);
+                 String userTime = hour_s + min_s + sec_s;
 
-                                             @Override
-                                             public void onClick(View v) {
-                                                 bt_start.setEnabled(true);
-                                                 bt_start.setText("Start");
-                                                 bt_stop.setEnabled(false);
-                                                 // reset count
-                                                 //getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
-                                                 ctr.cancel();
-                                                 // set text view back to zero
-                                                 //MainActivity.this.tv_count.setText("00:00.0");
-                                                 Response.Listener<String> responseLiner = new Response.Listener<String>(){
-
-                                                     @Override
-                                                     public void onResponse(String response) {
-                                                         try{
-                                                             JSONObject jsonResponse = new JSONObject(response);
-                                                             boolean success = jsonResponse.getBoolean("success");
-
-                                                             if(success){
-                                                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                                                                 dialog = builder.setMessage("Transfer Successful")
-                                                                         .setPositiveButton("확인", null).create();
-                                                                 dialog.show();
-                                                                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                                                                 MainActivity.this.startActivity(intent);
-                                                                 finish();
-                                                             }else {
-                                                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                                                                dialog = builder.setMessage("Transfer Failed")
-                                                                      .setNegativeButton("다시시도", null).create();
-                                                                dialog.show();
-                                                         }
-
-                                                         }catch (Exception e){
-                                                             e.printStackTrace();
-                                                         }
-                                                     }
-                                                 };
-
-                                                 TimeRequest TimeRequest = new TimeRequest(userID, userTime, responseLiner);
-                                                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                                                 queue.add(TimeRequest);
+                 bt_start.setEnabled(true);
+                 bt_start.setText("Start");
+                 bt_stop.setEnabled(false);
+                 // reset count
+                 getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
+                 ctr.cancel();
+                 // set text view back to zero
+                 MainActivity.this.tv_count.setText("00:00:00:00");
+             }
+         }
 
 
-                                             }
-
-                                         }
         );
 
 
@@ -203,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         // getint needs a default value
         int count = getPreferences(MODE_PRIVATE).getInt("COUNT", 0);
 
-        this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", count/36000, (count / 600)%60, (count / 10) % 60, count % 10));
+        this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", count/3600, count / 600, (count / 10) % 60, count % 10));
         System.out.println(count);
 
         // create timer
@@ -223,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void set_display(){
-        this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", ctr.count/36000, (ctr.count / 600)%60, (ctr.count / 10) % 60, ctr.count % 10));
+        this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", ctr.count/3600, ctr.count / 600, (ctr.count / 10) % 60, ctr.count % 10));
 
     }
 
@@ -259,6 +223,8 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
+
+
 
     class GettingPHP extends AsyncTask<String, Void, String> {
         @Override

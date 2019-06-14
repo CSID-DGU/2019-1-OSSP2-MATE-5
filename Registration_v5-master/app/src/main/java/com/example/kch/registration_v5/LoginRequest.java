@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class LoginRequest extends StringRequest{
 
-    final static private String URL = "http://210.94.194.82:50080//UserLogin.php";
+    final static private String URL = "http://hssoft.kr:9878//UserLogin.php";
     private Map<String, String> parameters;
 
     public LoginRequest(String userID, String userPassword, Response.Listener<String> listener){

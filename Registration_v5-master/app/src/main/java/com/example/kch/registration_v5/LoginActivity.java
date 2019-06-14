@@ -19,6 +19,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
 
     private AlertDialog dialog;
+    public static String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userID = idText.getText().toString();
+                userID = idText.getText().toString();
                 String userPassword = passwordText.getText().toString();
 
                 Response.Listener<String> responseLisner = new Response.Listener<String>(){
@@ -55,11 +56,13 @@ public class LoginActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if(success){
+
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 dialog = builder.setMessage("Login Success")
                                         .setPositiveButton("확인", null)
                                         .create();
                                 dialog.show();
+
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 LoginActivity.this.startActivity(intent);
                                 finish();
@@ -69,9 +72,9 @@ public class LoginActivity extends AppCompatActivity {
                                         .setNegativeButton("다시시도", null)
                                         .create();
                                 dialog.show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                LoginActivity.this.startActivity(intent);
-                                finish();
+//                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                LoginActivity.this.startActivity(intent);
+//                                finish();
                             }
 
                         }catch (Exception e){

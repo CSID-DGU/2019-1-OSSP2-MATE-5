@@ -1,6 +1,12 @@
 package edu.stlawu.stopwatch;
 
+import android.app.Activity;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
@@ -10,9 +16,9 @@ import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +35,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
-
     TextView no;
 
     // Define variables for our views
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private Button bt_reset = null;
     private Timer t = null;
     private Counter ctr = null; //Timertask
+
+    //String userID=LoginActivity.userID;
 
     // audio variables
     private AudioAttributes aa = null;
@@ -62,24 +69,21 @@ public class MainActivity extends AppCompatActivity {
         bt_stop.setEnabled(false);
         bt_reset.setEnabled(false);
 
-        no=findViewById(R.id.no);
+        no = findViewById(R.id.no);
         // start button enables timer
         this.bt_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Check if the permission already exits
-                int permission= ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.CALL_PHONE);
-                if(permission== PackageManager.PERMISSION_GRANTED)
-                {
+                int permission = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE);
+                if (permission == PackageManager.PERMISSION_GRANTED) {
                     gPHP = new GettingPHP();
-                    no = (TextView)findViewById(R.id.no);
+                    no = (TextView) findViewById(R.id.no);
                     gPHP.execute(url);
 
                     callNumber();
-                }
-                else
-                {
-                    ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.CALL_PHONE},121);
+                } else {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 121);
                 }
                 bt_start.setEnabled(false);
                 bt_stop.setEnabled(true);
@@ -102,39 +106,50 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        // reset button
+        // SEND button
         this.bt_reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int hour = ctr.count / 36000;
-                String hour_s = String.format("%02d", hour);
-                int min = (ctr.count / 600) % 60;
-                String min_s = String.format("%02d", min);
-                int sec = (ctr.count / 10) % 60;
-                String sec_s = String.format("%02d", sec);
+                                             @Override
+                                             public void onClick(View v) {
+                                                 int hour = ctr.count / 36000;
+                                                 String hour_s = String.format("%02d", hour);
+                                                 int min = (ctr.count / 600) % 60;
+                                                 String min_s = String.format("%02d", min);
+                                                 int sec = (ctr.count / 10) % 60;
+                                                 String sec_s = String.format("%02d", sec);
 
-                String userTime = hour_s + min_s + sec_s;
+                                                 String userTime = hour_s + min_s + sec_s;
 
-                bt_start.setEnabled(true);
-                bt_start.setText("Start");
-                bt_stop.setEnabled(false);
-                // reset count
-                //getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
-                ctr.cancel();
-                // set text view back to zero
-                //MainActivity.this.tv_count.setText("00:00.0");
-            }
-        }
+                                                 bt_start.setEnabled(true);
+                                                 bt_start.setText("Start");
+                                                 bt_stop.setEnabled(false);
+                                                 // reset count
+                                                 getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
+                                                 ctr.cancel();
+                                                 // set text view back to zero
+                                                 MainActivity.this.tv_count.setText("00:00:00:00");
+                                             }
+                                         }
 
 
         );
 
 
     }
-    void callNumber () {
-        String telno=no.getText().toString();
-        Uri uri=Uri.parse("tel:"+telno);
-        Intent i =new Intent(Intent.ACTION_CALL,uri);
+
+    void callNumber() {
+        String telno = no.getText().toString();
+        Uri uri = Uri.parse("tel:" + telno);
+        Intent i = new Intent(Intent.ACTION_CALL, uri);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         startActivity(i);
     }
 
@@ -167,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void set_display(){
-       this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", ctr.count/3600, ctr.count / 600, (ctr.count / 10) % 60, ctr.count % 10));
+        this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", ctr.count/3600, ctr.count / 600, (ctr.count / 10) % 60, ctr.count % 10));
 
     }
 
@@ -197,8 +212,8 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                        set_display();
-                        count++;
+                    set_display();
+                    count++;
                 }
             });
         }
@@ -237,19 +252,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String str) {
-                try {
-                    JSONArray results = new JSONArray(str);
-                    //json [] 형태를 string으로
-                    int result_num = results.length();
-                    Random random = new Random();
-                    int i=random.nextInt(result_num);
-                    JSONObject temp = results.getJSONObject(i);
-                    String randomPhoneNumber = temp.get("phonenum").toString();
-                    System.out.println(randomPhoneNumber);
-                    no.setText(randomPhoneNumber);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            try {
+                JSONArray results = new JSONArray(str);
+                //json [] 형태를 string으로
+                int result_num = results.length();
+                Random random = new Random();
+                int i=random.nextInt(result_num);
+                JSONObject temp = results.getJSONObject(i);
+                String randomPhoneNumber = temp.get("phonenum").toString();
+                System.out.println(randomPhoneNumber);
+                no.setText(randomPhoneNumber);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
