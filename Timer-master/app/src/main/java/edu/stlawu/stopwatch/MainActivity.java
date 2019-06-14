@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 getPreferences(MODE_PRIVATE).edit().putInt("COUNT", ctr.count).apply();
 
 
-                isRunnable = true;
+                isRunnable = false;
                 ctr.cancel();
             }
         });
