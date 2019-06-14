@@ -1,18 +1,26 @@
 package edu.stlawu.stopwatch;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.RemoteException;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,13 +30,25 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.android.internal.telephony.ITelephony;
+
 public class MainActivity extends AppCompatActivity {
+
+    protected static final String TAG = "MainActivity";
+
+    private int defCallInterval = 10 * 1000;
+    private int defHangUpInterval = 10 * 1000;
+
+    private static final int startCall = 1001;
+    private static final int stopCall = 1002;
 
     TextView no;
 
@@ -45,9 +65,50 @@ public class MainActivity extends AppCompatActivity {
     private SoundPool soundPool = null;
     private int bloopSound = 0;
 
-    String url = "http://210.94.194.82:50080/phone.php";
+
+    /**
+     * Called when the activity is first created.
+     */
+    private Button btn_start = null;
+    private Button btn_stop = null;
+    private EditText et_phone_no = null;
+    private EditText et_call_interval = null;
+    private EditText et_hand_up_interval = null;
+    private boolean isRunnable = true;
+    private boolean endCall = false;
+    private String telePhotoNo = null;
+    private String callInterval = null;
+    private String hangUpInterval = null;
+    ITelephony iPhoney = null;
+
+    String url = "http://hssoft.kr:9878/phone.php";
     public GettingPHP gPHP;
 
+    boolean isFirstStart = true;
+
+    // 检查权限
+    PackageManager pm = null;
+    boolean callPhonePermission = false;
+    boolean readPhoneStatePermission = false;
+
+    TelephonyManager tm = null;
+
+    private Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case startCall:
+                    startCallPhone();
+                    break;
+
+                case stopCall:
+                    stopCallPhone();
+                    break;
+
+            }
+
+            super.handleMessage(msg);
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,10 +120,20 @@ public class MainActivity extends AppCompatActivity {
         this.bt_stop = findViewById(R.id.bt_stop);
         this.bt_reset = findViewById(R.id.bt_reset);
 
-        bt_stop.setEnabled(false);
-        bt_reset.setEnabled(false);
+        et_call_interval = (EditText) findViewById(R.id.et_call_interval);
+        et_hand_up_interval = (EditText) findViewById(R.id.et_hand_up_interval);
 
         no=findViewById(R.id.no);
+        pm = getPackageManager();
+        callPhonePermission = (PackageManager.PERMISSION_GRANTED ==
+                pm.checkPermission("android.permission.CALL_PHONE", this.getPackageName()));
+
+        readPhoneStatePermission = (PackageManager.PERMISSION_GRANTED ==
+                pm.checkPermission("android.permission.READ_PHONE_STATE", this.getPackageName()));
+
+        tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+        iPhoney = getITelephony(this);
+
         // start button enables timer
         this.bt_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +145,10 @@ public class MainActivity extends AppCompatActivity {
                     gPHP = new GettingPHP();
                     no = (TextView)findViewById(R.id.no);
                     gPHP.execute(url);
+                    telePhotoNo=no.getText().toString();
 
-                    callNumber();
+                    isRunnable = true;
+                    startCallPhone();
                 }
                 else
                 {
@@ -97,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
                 bt_start.setText("Resume");
                 bt_reset.setEnabled(true);
                 getPreferences(MODE_PRIVATE).edit().putInt("COUNT", ctr.count).apply();
+
+
+                isRunnable = true;
                 ctr.cancel();
             }
         });
@@ -104,29 +180,55 @@ public class MainActivity extends AppCompatActivity {
 
         // reset button
         this.bt_reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bt_start.setEnabled(true);
-                bt_start.setText("Start");
-                bt_stop.setEnabled(false);
-                // reset count
-                //getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
-                ctr.cancel();
-                // set text view back to zero
-                //MainActivity.this.tv_count.setText("00:00.0");
-            }
-        }
+                                             @Override
+                                             public void onClick(View v) {
+                                                 bt_start.setEnabled(true);
+                                                 bt_start.setText("Start");
+                                                 bt_stop.setEnabled(false);
+                                                 // reset count
+                                                 //getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
+                                                 ctr.cancel();
+                                                 // set text view back to zero
+                                                 //MainActivity.this.tv_count.setText("00:00.0");
+                                             }
+                                         }
 
 
         );
 
 
     }
-    void callNumber () {
-        String telno=no.getText().toString();
-        Uri uri=Uri.parse("tel:"+telno);
-        Intent i =new Intent(Intent.ACTION_CALL,uri);
-        startActivity(i);
+    void startCallPhone () {
+        if(callPhonePermission) {
+            if(isFirstStart){
+                isFirstStart = false;
+            }
+            else {
+                try{
+                    Thread.sleep(5000);
+
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            if(isRunnable) {
+                int state = -1;
+
+                String telno = no.getText().toString();
+                Uri uri = Uri.parse("tel:" + telno);
+                Intent i = new Intent(Intent.ACTION_CALL, uri);
+                startActivity(i);
+                Log.d(TAG, "Calling---------------");
+
+                Message msg = Message.obtain();
+                msg.what = stopCall;
+                mHandler.sendMessage(msg);
+            }
+            else
+                Log.d(TAG, "isRunnable false-----------");
+        }
+        else
+            Log.d(TAG, "callpermission failed---------");
     }
 
 
@@ -158,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void set_display(){
-       this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", ctr.count/3600, ctr.count / 600, (ctr.count / 10) % 60, ctr.count % 10));
+        this.tv_count.setText(String.format("%02d:%02d:%02d:%02d", ctr.count/3600, ctr.count / 600, (ctr.count / 10) % 60, ctr.count % 10));
 
     }
 
@@ -188,14 +290,89 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                        set_display();
-                        count++;
+                    set_display();
+                    count++;
                 }
             });
         }
     }
 
 
+    private static ITelephony getITelephony(Context context) {
+        TelephonyManager mTelephonyManager = (TelephonyManager) context
+                .getSystemService(TELEPHONY_SERVICE);
+        Class<TelephonyManager> c = TelephonyManager.class;
+        Method getITelephonyMethod = null;
+        try {
+            getITelephonyMethod = c.getDeclaredMethod("getITelephony",
+                    (Class[]) null); // 获取声明的方法
+            getITelephonyMethod.setAccessible(true);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        ITelephony iTelephony = null;
+        try {
+            iTelephony = (ITelephony) getITelephonyMethod.invoke(
+                    mTelephonyManager, (Object[]) null); // 获取实例
+            return iTelephony;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return iTelephony;
+    }
+
+
+    private void stopCallPhone() {
+
+        try {
+            Thread.sleep(3000);
+            do {
+                Class c = Class.forName(tm.getClass().getName());
+                Method m = c.getDeclaredMethod("getITelephony");
+                m.setAccessible(true);
+                iPhoney = (ITelephony) m.invoke(tm);
+                //endCall = iPhoney.endCall();
+
+                Log.d(TAG,"END CALL TRYING!!!!!!!!!!!!!!!!");
+
+                endCall=true;
+            } while (!endCall);
+
+            Message msg = Message.obtain();
+            msg.what = startCall;
+            mHandler.sendMessage(msg);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+//
+//            if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
+//                do {
+//                    endCall = iPhoney.endCall();
+//                    Log.d(TAG, "挂断电话============== " + endCall);
+//                } while (!endCall);
+//
+//                Message msg = Message.obtain();
+//                msg.what = startCall;
+//                mHandler.sendMessage(msg);
+//            }
+//
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
+//        //System.out.println("是否成功挂断："+endCall);
+    }
 
     class GettingPHP extends AsyncTask<String, Void, String> {
         @Override
@@ -228,20 +405,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String str) {
-                try {
-                    JSONArray results = new JSONArray(str);
-                    //json [] 형태를 string으로
-                    int result_num = results.length();
-                    Random random = new Random();
-                    int i=random.nextInt(result_num);
-                    JSONObject temp = results.getJSONObject(i);
-                    String randomPhoneNumber = temp.get("phonenum").toString();
-                    System.out.println(randomPhoneNumber);
-                    no.setText(randomPhoneNumber);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            try {
+                JSONArray results = new JSONArray(str);
+                //json [] 형태를 string으로
+                int result_num = results.length();
+                Random random = new Random();
+                int i=random.nextInt(result_num);
+                JSONObject temp = results.getJSONObject(i);
+                String randomPhoneNumber = temp.get("phonenum").toString();
+                System.out.println(randomPhoneNumber);
+                no.setText(randomPhoneNumber);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
+
+
 
 }

@@ -5,12 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_call_interval"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:hint="10"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/et_hand_up_interval"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:hint="10"
+            android:inputType="number" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
+
+
         <TextView
             android:id="@+id/no"
             android:layout_width="wrap_content"
@@ -30,7 +55,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
                 android:padding="10dp"
-                android:text="@string/start" />
+                android:text="Start" />
 
             <Button
                 android:id="@+id/bt_stop"
@@ -39,7 +64,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
                 android:padding="10dp"
-                android:text="@string/stop" />
+                android:text="Stop" />
 
             <Button
                 android:id="@+id/bt_reset"
@@ -57,9 +82,9 @@
             android:id="@+id/tv_count"
             android:layout_width="220dp"
             android:layout_height="60dp"
+            android:layout_marginTop="30dp"
             android:text="00:00:00:00"
             android:textSize="40dp"
-            android:layout_marginTop="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
