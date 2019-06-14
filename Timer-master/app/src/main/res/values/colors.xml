@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFA43FC8</color>
-    <color name="colorPrimaryDark">#b288e2</color>
-    <color name="colorAccent">#FF4081</color>
-        <!--test color pink-->
-    <color name="textColor">#FFEB1AF6</color>
-    <color name="pink">#FF4081</color>
+    <color name="colorPrimary">#8FAE48</color>
+    <color name="colorPrimaryDark">#7D9C36</color>
+    <color name="colorAccent">#546E7A</color>
+    <color name="colorWarning">#355400</color>
+    <color name="colorGray">#8C8C8C</color>
+
+    <!--test color pink-->
+    <color name="textColor">#234200</color>
+    <color name="pink">#476600</color>
     <color name="gray">#f0eced</color>
     <color name="normalBackground">#D6D7D7</color>
 
