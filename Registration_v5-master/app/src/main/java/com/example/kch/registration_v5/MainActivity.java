@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private Button bt_reset = null;
     private Timer t = null;
     private Counter ctr = null; //Timertask
+    private AlertDialog dialog;
 
     String userID=LoginActivity.userID;
 
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 bt_start.setEnabled(false);
                 bt_stop.setEnabled(true);
-                bt_reset.setEnabled(true);
+                bt_reset.setEnabled(false);
                 resume();
             }
         });
@@ -123,6 +124,47 @@ public class MainActivity extends AppCompatActivity {
                  String sec_s = String.format("%02d", sec);
 
                  String userTime = hour_s + min_s + sec_s;
+
+                 Response.Listener<String> responseListen = new Response.Listener<String>(){
+
+                     @Override
+                     public void onResponse(String response) {
+                         try{
+                             JSONObject jsonResponse = new JSONObject(response);
+                             //boolean success = jsonResponse.getBoolean("success");
+                             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                             dialog = builder.setMessage("SEND Success")
+                                     .setPositiveButton("확인", null)
+                                     .create();
+                             dialog.show();
+//                             if(success){
+//                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                                 dialog = builder.setMessage("SEND Success")
+//                                         .setPositiveButton("확인", null)
+//                                         .create();
+//                                 dialog.show();
+////                                 // reset count
+////                                 getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
+////                                 ctr.cancel();
+////                                 // set text view back to zero
+////                                 MainActivity.this.tv_count.setText("00:00:00:00");
+//                             }else {
+//                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                                 dialog = builder.setMessage("SEND failed")
+//                                         .setNegativeButton("확인", null)
+//                                         .create();
+//                                 dialog.show();
+//                             }
+
+                         }catch (Exception e){
+                             e.printStackTrace();
+                         }
+                     }
+                 };
+
+                 TimeRequest timeRequest = new TimeRequest(userID, userTime, responseListen);
+                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+                 queue.add(timeRequest);
 
                  bt_start.setEnabled(true);
                  bt_start.setText("Start");
