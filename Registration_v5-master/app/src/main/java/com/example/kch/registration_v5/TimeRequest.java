@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class TimeRequest extends StringRequest {
 
-    final static private String URL = "http://210.94.194.82:50080/UserTimer.php";
+    final static private String URL = "http://hssoft.kr:9878/UserTimer.php";
     private Map<String, String> parameters;
 
     public TimeRequest(String userID, String userTime, Response.Listener<String> listener){
