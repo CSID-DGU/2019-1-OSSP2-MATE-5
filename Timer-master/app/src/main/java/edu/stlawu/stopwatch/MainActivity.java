@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private SoundPool soundPool = null;
     private int bloopSound = 0;
 
-    String url = "http://210.94.194.82:50080/phone.php";
+    String url = "http://hssoft.kr:9878/phone.php";
     public GettingPHP gPHP;
 
     @Override
@@ -106,6 +106,15 @@ public class MainActivity extends AppCompatActivity {
         this.bt_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int hour = ctr.count / 36000;
+                String hour_s = String.format("%02d", hour);
+                int min = (ctr.count / 600) % 60;
+                String min_s = String.format("%02d", min);
+                int sec = (ctr.count / 10) % 60;
+                String sec_s = String.format("%02d", sec);
+
+                String userTime = hour_s + min_s + sec_s;
+
                 bt_start.setEnabled(true);
                 bt_start.setText("Start");
                 bt_stop.setEnabled(false);
