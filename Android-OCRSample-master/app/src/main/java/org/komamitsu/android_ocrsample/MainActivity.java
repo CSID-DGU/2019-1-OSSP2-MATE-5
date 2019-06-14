@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView image;
     private TextView detectedTextView;
 
-    private static String IP_ADDRESS="210.94.194.82:50080";
+    private static String IP_ADDRESS="hssoft.kr:9878";
     private static String tag="phptest";
 
     @Override
@@ -284,8 +284,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             loading.dismiss();
-            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-            //Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_LONG).show();
+           // Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -294,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 String phonenum = (String) params[0];
 
-                String link = "http://210.94.194.82:50080/insertPhone.php";
+                String link = "http://hssoft.kr:9878/insertPhone.php";
 
                 JSONObject data = new JSONObject();
 
