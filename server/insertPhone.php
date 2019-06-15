@@ -7,7 +7,7 @@
 
 	$servername = "localhost";
 	$username = "wndnjs9878";
-	$password = "open";
+	$password = "";
 	$dbname = "phone";
 	
 	$conn = new mysqli($servername, $username, $password, $dbname);
