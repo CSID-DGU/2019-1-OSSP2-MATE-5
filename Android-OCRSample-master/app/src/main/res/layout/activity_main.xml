@@ -14,6 +14,7 @@
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
         android:text="@string/choose_from_gallery"
         android:id="@+id/choose_from_gallery"
         tools:context=".MainActivity"
@@ -24,6 +25,7 @@
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
         android:text="@string/take_a_photo"
         android:id="@+id/take_a_photo"
         tools:context=".MainActivity"
@@ -63,6 +65,7 @@
 
     <Button
         android:id="@+id/submit"
+        android:background="@color/colorAccent"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/detected_text"
