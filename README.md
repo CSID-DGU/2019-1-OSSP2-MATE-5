@@ -26,6 +26,7 @@
 
 
 <br/>
+
 > ## Original Opensource
 
 https://github.com/komamitsu/Android-OCRSample<br/>
