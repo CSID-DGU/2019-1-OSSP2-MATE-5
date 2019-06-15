@@ -25,7 +25,7 @@
 ![mate_2](https://user-images.githubusercontent.com/48276522/59553642-6f9d6180-8fd2-11e9-8ccd-455699fd9917.PNG)<br/>
 
 
-
+<br/>
 > ## Original Opensource
 
 https://github.com/komamitsu/Android-OCRSample<br/>
