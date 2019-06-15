@@ -18,7 +18,10 @@
 
 > ## View
 
-![capt](https://user-images.githubusercontent.com/48276522/58680281-1c0c0080-83a2-11e9-856c-727d740f77fc.PNG)<br/><br/>
+![mate_1](https://user-images.githubusercontent.com/48276522/59553640-6dd39e00-8fd2-11e9-807d-57a38ba0adc5.PNG)
+
+
+![mate_2](https://user-images.githubusercontent.com/48276522/59553642-6f9d6180-8fd2-11e9-8ccd-455699fd9917.PNG)
 
 
 
