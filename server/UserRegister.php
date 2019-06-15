@@ -2,7 +2,7 @@
 	header("Content-Type: application/json");
 	$servername = "localhost";
     $username = "wndnjs9878";
-    $password = "open";
+    $password = "";
     $dbname = "phone";
      $con = new mysqli($servername, $username, $password, $dbname);
      //안드로이드 앱으로부터 아래 값들을 받음
