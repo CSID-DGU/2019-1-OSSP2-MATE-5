@@ -18,10 +18,10 @@
 
 > ## View
 
-*MATE_1<br/>
+* MATE_1<br/>
 ![mate_1](https://user-images.githubusercontent.com/48276522/59553640-6dd39e00-8fd2-11e9-807d-57a38ba0adc5.PNG)<br/>
 
-*MATE_2<br/>
+* MATE_2<br/>
 ![mate_2](https://user-images.githubusercontent.com/48276522/59553642-6f9d6180-8fd2-11e9-8ccd-455699fd9917.PNG)<br/>
 
 
