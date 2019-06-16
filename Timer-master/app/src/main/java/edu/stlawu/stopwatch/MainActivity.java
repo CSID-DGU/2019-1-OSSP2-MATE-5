@@ -336,27 +336,35 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if (isRunnable) {
-                int state = -1;
+                int state = tm.getCallState();
+                Log.d(TAG,"----------Getcallstate :  "+tm.getCallState());
+                if(state==0) {
+                    Log.d(TAG, "TRY Calling---------------");
+                    String telno = no.getText().toString();
+                    Uri uri = Uri.parse("tel:" + telno);
+                    Intent i = new Intent(Intent.ACTION_CALL, uri);
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details
+                    }
+                    startActivity(i);
+                    Log.d(TAG, "Calling---------------");
 
-                Log.d(TAG, "TRY Calling---------------");
-                String telno = no.getText().toString();
-                Uri uri = Uri.parse("tel:" + telno);
-                Intent i = new Intent(Intent.ACTION_CALL, uri);
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details
+                    Message msg = Message.obtain();
+                    msg.what = stopCall;
+                    mHandler.sendMessage(msg);
+
                 }
-                startActivity(i);
-                Log.d(TAG, "Calling---------------");
-
-                Message msg = Message.obtain();
-                msg.what = stopCall;
-                mHandler.sendMessage(msg);
+                if(state ==2){
+                    Message msg = Message.obtain();
+                    msg.what = stopCall;
+                    mHandler.sendMessage(msg);
+                }
 
             }
             else
@@ -384,6 +392,7 @@ public class MainActivity extends AppCompatActivity {
             Message msg = Message.obtain();
             msg.what = startCall;
             mHandler.sendMessage(msg);
+
         }catch (InterruptedException e){
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
