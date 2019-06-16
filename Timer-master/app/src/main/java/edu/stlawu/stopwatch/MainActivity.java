@@ -1,34 +1,28 @@
 package edu.stlawu.stopwatch;
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.internal.telephony.ITelephony;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -171,29 +165,25 @@ public class MainActivity extends AppCompatActivity {
 
         // SEND button
         this.bt_reset.setOnClickListener(new View.OnClickListener() {
-                                             @Override
-                                             public void onClick(View v) {
-                                                 int hour = ctr.count / 36000;
-                                                 String hour_s = String.format("%02d", hour);
-                                                 int min = (ctr.count / 600) % 60;
-                                                 String min_s = String.format("%02d", min);
-                                                 int sec = (ctr.count / 10) % 60;
-                                                 String sec_s = String.format("%02d", sec);
+            @Override
+            public void onClick(View v) {
+                int hour = ctr.count / 36000;
+                String hour_s = String.format("%02d", hour);
+                int min = (ctr.count / 600) % 60;
+                String min_s = String.format("%02d", min);
+                int sec = (ctr.count / 10) % 60;
+                String sec_s = String.format("%02d", sec);
+                String userTime = hour_s + min_s + sec_s;
+                Response.Listener<String> responseListen = new Response.Listener<String>() {
 
-                                                 String userTime = hour_s + min_s + sec_s;
-
-                                                 Response.Listener<String> responseListen = new Response.Listener<String>() {
-
-                                                     @Override
-                                                     public void onResponse(String response) {
-                                                         try {
-                                                             JSONObject jsonResponse = new JSONObject(response);
-                                                             //boolean success = jsonResponse.getBoolean("success");
-                                                             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                                                             dialog = builder.setMessage("SEND Success")
-                                                                     .setPositiveButton("확인", null)
-                                                                     .create();
-                                                             dialog.show();
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            //boolean success = jsonResponse.getBoolean("success");
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                            dialog = builder.setMessage("SEND Success").setPositiveButton("확인", null).create();
+                            dialog.show();
 //                             if(success){
 //                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 //                                 dialog = builder.setMessage("SEND Success")
@@ -213,50 +203,29 @@ public class MainActivity extends AppCompatActivity {
 //                                 dialog.show();
 //                             }
 
-                                                         } catch (Exception e) {
-                                                             e.printStackTrace();
-                                                         }
-                                                     }
-                                                 };
-
-                                                 TimeRequest timeRequest = new TimeRequest(userID, userTime, responseListen);
-                                                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                                                 queue.add(timeRequest);
-
-                                                 bt_start.setEnabled(true);
-                                                 bt_start.setText("Start");
-                                                 bt_stop.setEnabled(false);
-                                                 // reset count
-                                                 getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
-                                                 ctr.cancel();
-                                                 // set text view back to zero
-                                                 MainActivity.this.tv_count.setText("00:00:00:00");
-                                             }
-                                         }
-
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                TimeRequest timeRequest = new TimeRequest(userID, userTime, responseListen);
+                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+                queue.add(timeRequest);
+                bt_start.setEnabled(true);
+                bt_start.setText("Start");
+                bt_stop.setEnabled(false);
+                // reset count
+                getPreferences(MODE_PRIVATE).edit().putInt("COUNT", 0).apply();
+                ctr.cancel();
+                // set text view back to zero
+                MainActivity.this.tv_count.setText("00:00:00:00");
+            }
+        }
 
         );
 
 
     }
-
-    void callNumber() {
-        String telno = no.getText().toString();
-        Uri uri = Uri.parse("tel:" + telno);
-        Intent i = new Intent(Intent.ACTION_CALL, uri);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        startActivity(i);
-    }
-
 
     @Override
     protected void onStart() {
@@ -336,35 +305,32 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if (isRunnable) {
-                int state = tm.getCallState();
-                Log.d(TAG,"----------Getcallstate :  "+tm.getCallState());
-                if(state==0) {
-                    Log.d(TAG, "TRY Calling---------------");
-                    String telno = no.getText().toString();
-                    Uri uri = Uri.parse("tel:" + telno);
-                    Intent i = new Intent(Intent.ACTION_CALL, uri);
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details
-                    }
-                    startActivity(i);
-                    Log.d(TAG, "Calling---------------");
+                int state = -1;
 
-                    Message msg = Message.obtain();
-                    msg.what = stopCall;
-                    mHandler.sendMessage(msg);
+                Log.d(TAG, "TRY Calling---------------");
 
+                gPHP = new GettingPHP();
+                no = (TextView) findViewById(R.id.no);
+                gPHP.execute(url);
+
+                String telno = no.getText().toString();
+                Uri uri = Uri.parse("tel:" + telno);
+                Intent i = new Intent(Intent.ACTION_CALL, uri);
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details
                 }
-                if(state ==2){
-                    Message msg = Message.obtain();
-                    msg.what = stopCall;
-                    mHandler.sendMessage(msg);
-                }
+                startActivity(i);
+                Log.d(TAG, "Calling---------------");
+
+                Message msg = Message.obtain();
+                msg.what = stopCall;
+                mHandler.sendMessage(msg);
 
             }
             else
@@ -392,7 +358,6 @@ public class MainActivity extends AppCompatActivity {
             Message msg = Message.obtain();
             msg.what = startCall;
             mHandler.sendMessage(msg);
-
         }catch (InterruptedException e){
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
@@ -414,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
         Method getITelephonyMethod = null;
         try {
             getITelephonyMethod = c.getDeclaredMethod("getITelephony",
-                    (Class[]) null); // 获取声明的方法
+                    (Class[]) null);
             getITelephonyMethod.setAccessible(true);
         } catch (SecurityException e) {
             e.printStackTrace();
@@ -424,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
         ITelephony iTelephony = null;
         try {
             iTelephony = (ITelephony) getITelephonyMethod.invoke(
-                    mTelephonyManager, (Object[]) null); // 获取实例
+                    mTelephonyManager, (Object[]) null);
             return iTelephony;
         } catch (Exception e) {
             e.printStackTrace();

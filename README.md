@@ -12,19 +12,24 @@
  
 > ## Development Environment
 
- * Ubuntu 16.04<br/>
- * Apache2<br/>
+ * Ubuntu 18.04<br/>
  * MySQL<br/>
  * Android Studio<br/><br/>
 
 > ## View
 
-![capt](https://user-images.githubusercontent.com/48276522/58680281-1c0c0080-83a2-11e9-856c-727d740f77fc.PNG)<br/><br/>
+* <b>MATE_1<br/>Application to taking pictures of illegal advertising<br/><br/>
+![mate_1](https://user-images.githubusercontent.com/48276522/59553640-6dd39e00-8fd2-11e9-807d-57a38ba0adc5.PNG)<br/>
+
+* MATE_2<br/>Automatic phone call application<br/><br/></b>
+![mate_2](https://user-images.githubusercontent.com/48276522/59553642-6f9d6180-8fd2-11e9-8ccd-455699fd9917.PNG)<br/>
 
 
+<br/>
 
 > ## Original Opensource
 
-https://github.com/komamitsu/Android-OCRSample<br/>
-https://github.com/KayReid/Timer
+* https://github.com/komamitsu/Android-OCRSample<br/>
+* https://github.com/KayReid/Timer<br/>
+* https://github.com/GaKaRi/gakari_android/tree/master/Registration_v4
 
