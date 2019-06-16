@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     boolean readPhoneStatePermission = false;
     private boolean isRunnable = true;
     private boolean endCall = false;
-
+    private int state = -1;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -305,8 +305,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if (isRunnable) {
-                int state = -1;
+                state = tm.getCallState();
+                Log.d(TAG, "GetCallState : "+state);
 
+                if(state==0){
                 Log.d(TAG, "TRY Calling---------------");
 
                 gPHP = new GettingPHP();
@@ -331,6 +333,12 @@ public class MainActivity extends AppCompatActivity {
                 Message msg = Message.obtain();
                 msg.what = stopCall;
                 mHandler.sendMessage(msg);
+                }
+                if(state==2){
+                    Message msg = Message.obtain();
+                    msg.what = stopCall;
+                    mHandler.sendMessage(msg);
+                }
 
             }
             else
@@ -343,6 +351,8 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             Thread.sleep(3000);
+            state = tm.getCallState();
+            if(state==2){
             do {
                 Class c = Class.forName(tm.getClass().getName());
                 Method m = c.getDeclaredMethod("getITelephony");
@@ -357,7 +367,12 @@ public class MainActivity extends AppCompatActivity {
 
             Message msg = Message.obtain();
             msg.what = startCall;
-            mHandler.sendMessage(msg);
+            mHandler.sendMessage(msg);}
+            if(state==0){
+                Message msg = Message.obtain();
+                msg.what = startCall;
+                mHandler.sendMessage(msg);
+            }
         }catch (InterruptedException e){
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
