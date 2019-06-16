@@ -29,7 +29,7 @@
 
 > ## Original Opensource
 
-https://github.com/komamitsu/Android-OCRSample<br/>
-https://github.com/KayReid/Timer<br/>
-https://github.com/GaKaRi/gakari_android/tree/master/Registration_v4
+* https://github.com/komamitsu/Android-OCRSample<br/>
+* https://github.com/KayReid/Timer<br/>
+* https://github.com/GaKaRi/gakari_android/tree/master/Registration_v4
 
