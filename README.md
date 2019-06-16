@@ -31,4 +31,5 @@
 
 https://github.com/komamitsu/Android-OCRSample<br/>
 https://github.com/KayReid/Timer
+https://github.com/GaKaRi/gakari_android/tree/master/Registration_v4
 
