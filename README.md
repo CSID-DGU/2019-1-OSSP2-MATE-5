@@ -25,7 +25,7 @@
 
 * MATE_2<br/>Automatic phone call application<br/><br/></b>
 ![mate_2](https://user-images.githubusercontent.com/48276522/59553642-6f9d6180-8fd2-11e9-8ccd-455699fd9917.PNG)<br/>
-
+<br/>
 > ## How to use
 <pre>
 
@@ -39,7 +39,7 @@
 * https://github.com/KayReid/Timer<br/>
 * https://github.com/GaKaRi/gakari_android/tree/master/Registration_v4
 </pre>
-
+</br>
 > ## Connect
 <pre>
 
