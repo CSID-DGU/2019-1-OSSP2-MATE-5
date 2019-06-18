@@ -8,14 +8,14 @@
  * 2015112162 신유경 [전화] <br/>
  * 2017112064 이주원 [팀장, 전화] <br/>
  * 2017112078 정지연 [회원정보관리] <br/>
- * 2017112084 신성현 [회원정보관리]<br/><br/>
- </pre
+ * 2017112084 신성현 [회원정보관리]
+ </pre><br/><br/>
 > ## Development Environment
 <pre>
  * Ubuntu 18.04<br/>
  * MySQL<br/>
- * Android Studio<br/><br/>
-</pre>
+ * Android Studio
+</pre><br/><br/>
 > ## View
 
 * <b>MATE_1<br/>Application to taking pictures of illegal advertising<br/><br/>
