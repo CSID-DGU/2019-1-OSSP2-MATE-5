@@ -12,11 +12,8 @@
  </pre><br/><br/>
  
 > ## Development Environment
-<pre>
- * Ubuntu 18.04<br/>
- * MySQL<br/>
- * Android Studio
-</pre><br/><br/>
+![development_tool](https://user-images.githubusercontent.com/48276522/59709368-8e555f80-9241-11e9-96dc-0c402549ae91.PNG)
+<br/><br/>
 
 > ## View
 
