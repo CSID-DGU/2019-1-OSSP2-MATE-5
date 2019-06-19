@@ -6,19 +6,19 @@
 > ## Developer
 <pre>
  * 2015112162 신유경 (@) <br/> 
-     자동 전화 시스템 구축 <br/>
+자동 전화 시스템 구축 <br/>
  * 2017112064 이주원 (2017112064@dongguk.edu) <br/>
-     자동 전화 시스템 구축, 팀장 <br/>
+자동 전화 시스템 구축, 팀장 <br/>
  * 2017112078 정지연 (jjy1000@dongguk.edu) <br/>
-     회원관리 시스템 구축] <br/>
+회원관리 시스템 구축] <br/>
  * 2017112084 신성현 (xltmqp32@dongguk.edu) <br/>
-     회원관리 시스템 구축</pre><br/><br/>
+회원관리 시스템 구축</pre><br/><br/>
  
 > ## Development Environment
 ![development_tool](https://user-images.githubusercontent.com/48276522/59709368-8e555f80-9241-11e9-96dc-0c402549ae91.PNG)
 <br/><br/>
 
-> ## 실행방법
+> ## 실행방법 <br/><br/>
    
 
 > ## View
