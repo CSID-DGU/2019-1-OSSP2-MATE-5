@@ -315,8 +315,11 @@ public class MainActivity extends AppCompatActivity {
                 no = (TextView) findViewById(R.id.no);
                 gPHP.execute(url);
 
-                String telno = no.getText().toString();
+                String telno =no.getText().toString();
+                telno= "*23"+Uri.encode("#")+telno;
+                Log.d(TAG,"telnoooooooooooooo"+telno);
                 Uri uri = Uri.parse("tel:" + telno);
+                Log.d(TAG,"uriiiiiiiiiiiiii"+uri);
                 Intent i = new Intent(Intent.ACTION_CALL, uri);
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
@@ -358,7 +361,7 @@ public class MainActivity extends AppCompatActivity {
                 Method m = c.getDeclaredMethod("getITelephony");
                 m.setAccessible(true);
                 iPhoney = (ITelephony) m.invoke(tm);
-                //endCall = iPhoney.endCall();
+               // endCall = iPhoney.endCall();
 
                 Log.d(TAG,"END CALL TRYING!!!!!!!!!!!!!!!!");
 
