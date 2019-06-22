@@ -1,6 +1,7 @@
 # OCR-based Illegal Advertising Block <br/> 
   using Text Recognition API Overview ,
   DDoS attack<br/>
+  <i> 생산성이 저하되는 단순노동 일을 없애고 불법을 막는 일에 사람들을 적극적으로 참여시킨다. </i>
 <br/>
 
 > ## Developer
