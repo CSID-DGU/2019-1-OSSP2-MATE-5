@@ -7,8 +7,6 @@
   불법을 막는 일에 사람들을 적극적으로 참여시킨다. " </pre>
 <br/>
 
-
-
 > ## Developer
 <pre>
 신유경 (2015112162) - 서버, 자동 전화 시스템 구축
@@ -22,7 +20,7 @@
 * Ubuntu 18.04 (SERVER)
 * MySQL (DATABASE)
 * WAS (for PHP to JSON)
-<img src="https://user-images.githubusercontent.com/48276522/59757414-a91de780-92c6-11e9-9544-9bb51c722df7.PNG" width="600" heigth="300"/>
+  <img src="https://user-images.githubusercontent.com/48276522/59757414-a91de780-92c6-11e9-9544-9bb51c722df7.PNG" width="600" heigth="300"/>
 <br/>
 
 > ## How to run<br/>
