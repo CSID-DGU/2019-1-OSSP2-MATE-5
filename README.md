@@ -51,12 +51,12 @@
 
 > ## View
 * <b>MATE_1 /Android-OCRSample-master<br/>Application to taking pictures of illegal advertising<br/><br/>
-  <img src="https://user-images.githubusercontent.com/48276633/59965975-5eaf9b80-9550-11e9-8b0d-fffe80e5e655.png" width="400" heigth="400"/><br/>
+  <img src="https://user-images.githubusercontent.com/48276633/59965998-a46c6400-9550-11e9-9e02-4894a4d473c1.png" width="400" heigth="400"/><br/>
 
 * MATE_2 /Timer-master<br/>Automatic phone call application<br/>
   <자원봉사자가 사용중인 애플리케이션 화면>
-  <img src ="https://user-images.githubusercontent.com/48276633/59965976-5fe0c880-9550-11e9-8198-b17d9d422328.png" width="700" height="400"/><br/>
-  <img src="https://user-images.githubusercontent.com/48276633/59965691-87ce2d00-954c-11e9-814b-73375b8a397d.png" width="700" height="400"/><br/></br>
+  <img src ="https://user-images.githubusercontent.com/48276633/59965999-a6cebe00-9550-11e9-821a-59dcf5606012.png" width="700" height="400"/><br/>
+  <img src="https://user-images.githubusercontent.com/48276633/59965992-9c142900-9550-11e9-9325-ee3c84c9750f.png" width="700" height="400"/><br/></br>
 
   <자원봉사자가 전화를 건 수신자 화면(발신번호표시제한)><br/></b>
   <img src= "https://user-images.githubusercontent.com/48276633/59965977-6111f580-9550-11e9-945c-4d52f5dd309a.png" width="200" height="400"/><br/>
