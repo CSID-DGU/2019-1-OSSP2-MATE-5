@@ -29,8 +29,7 @@
 </pre></br>
 
 > ## Directory
-![MATE_1](https://user-images.githubusercontent.com/48276633/59965114-ef807a00-9544-11e9-9488-54f1f339821b.png)
-![MATE_2](https://user-images.githubusercontent.com/48276633/59965121-f4452e00-9544-11e9-8bd2-6721a45874cc.png)
+![image](https://user-images.githubusercontent.com/48276633/59965167-6ae22b80-9545-11e9-974b-eec92823abfa.png)
 </br>
 
 > ## How to use
