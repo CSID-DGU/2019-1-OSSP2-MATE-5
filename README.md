@@ -35,7 +35,7 @@
 > ## How to use
 <b>MATE_1 /Android-OCRSample-master</b></br>
 <pre>
-1. CHOOSE FROM GALLERY를 통해 앨범에 있는 전단지 사진을 가져오거나 또는 TAKE A PHOTO을 통해 전단지 사진을 찍는다.
+1. CHOOSE FROM GALLERY를 통해 앨범에 있는 전단지 사진을 가져오거나 TAKE A PHOTO을 통해 전단지 사진을 찍는다.
 2. 전단지의 번호와 인식된 번호를 비교하며 일치하였을 경우, SUBMIT 버튼을 클릭해 데이터베이스에 번호를 전송한다.
 3. 데이터베이스에 번호가 전송된 후 전송 성공을 알리는 success가 나타난다.
 </pre>
