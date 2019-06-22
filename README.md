@@ -55,7 +55,7 @@
 
 * MATE_2 /Timer-master<br/>Automatic phone call application<br/>
   <자원봉사자가 사용중인 애플리케이션 화면>
-  <img src ="https://user-images.githubusercontent.com/48276633/59965999-a6cebe00-9550-11e9-821a-59dcf5606012.png" width="700" height="400"/><br/>
+  <img src ="https://user-images.githubusercontent.com/48276633/59966025-1a70cb00-9551-11e9-8a1e-5aab47ecb5e7.png" width="700" height="400"/><br/>
   <img src="https://user-images.githubusercontent.com/48276633/59965992-9c142900-9550-11e9-9325-ee3c84c9750f.png" width="700" height="400"/><br/></br>
 
   <자원봉사자가 전화를 건 수신자 화면(발신번호표시제한)><br/></b>
