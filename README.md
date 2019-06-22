@@ -1,8 +1,10 @@
 # OCR-based Illegal Advertising Block <br/> 
   using Text Recognition API Overview ,
   DDoS attack<br/>
-  <i> 생산성이 저하되는 단순노동 일을 없애고 불법을 막는 일에 사람들을 적극적으로 참여시킨다. </i>
+      <pre>자원봉사자들로부터 수거된 전단지를 수사관들이 직접 프로그램에 번호를 입력하는 "단순노동" 일을 없애고 불법을 막는 일에 사람들을 적극적으로 참여시킨다. </pre>
 <br/>
+
+
 
 > ## Developer
 <pre>
@@ -52,7 +54,7 @@
 
 > ## View
 * <b>MATE_1 /Android-OCRSample-master<br/>Application to taking pictures of illegal advertising<br/><br/>
-  <img src="https://user-images.githubusercontent.com/48276633/59965998-a46c6400-9550-11e9-9e02-4894a4d473c1.png" width="400" heigth="400"/><br/>
+  <img src="https://user-images.githubusercontent.com/48276633/59966144-f9a97500-9552-11e9-9968-958a4280820b.png" width="400" heigth="400"/><br/>
 
 * MATE_2 /Timer-master<br/>Automatic phone call application<br/>
   <자원봉사자가 사용중인 애플리케이션 화면>
