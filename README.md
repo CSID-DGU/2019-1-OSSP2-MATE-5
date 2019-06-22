@@ -9,7 +9,7 @@
 이주원 (2017112064) - 서버, 자동 전화 시스템 구축, 팀장
 정지연 (2017112078) - 애플리케이션 UI, 회원관리 시스템 구축
 신성현 (2017112084) - OCR 통한 전화번호 추출, 회원관리 시스템 구축
-</pre><br/><br/>
+</pre><br/>
  
 > ## Development Environment
 * Android studio 3.4
@@ -17,7 +17,7 @@
 * MySQL (DATABASE)
 * WAS (for PHP to JSON)
 ![SERVICE](https://user-images.githubusercontent.com/48276522/59757414-a91de780-92c6-11e9-9544-9bb51c722df7.PNG)
-<br/><br/>
+<br/>
 
 > ## How to run<br/>
 <pre>
@@ -26,7 +26,7 @@
 3. git clone https://github.com/CSID-DGU/2019-1-OSSP2-MATE-5.git
 4. Put the URL in Clone Repository
 5. Run the application
-</pre>
+</pre></br>
 
 > ## How to use
 <pre>
