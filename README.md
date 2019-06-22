@@ -62,7 +62,7 @@
 <pre>
 신유경 roodwl@naver.com
 이주원 2017112064@dongguk.edu
-정지연 jy1000@dongguk.edu
+정지연 jjy1000@dongguk.edu
 신성현 xltmqp32@dongguk.edu
 </pre></br>
 
