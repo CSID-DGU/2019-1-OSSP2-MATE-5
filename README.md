@@ -4,14 +4,12 @@
 <br/>
 
 > ## Developer
- * 2015112162 신유경 (roodwl@naver.com) <br/> 
-서버, 자동 전화 시스템 구축 <br/>
- * 2017112064 이주원 (2017112064@dongguk.edu) <br/>
-서버, 자동 전화 시스템 구축, 팀장 <br/>
- * 2017112078 정지연 (jjy1000@dongguk.edu) <br/>
-애플리케이션 UI, 회원관리 시스템 구축 <br/>
- * 2017112084 신성현 (xltmqp32@dongguk.edu) <br/>
-OCR 통한 전화번호 추출, 회원관리 시스템 구축<br/><br/>
+<pre>
+ 2015112162 신유경 (roodwl@naver.com) - 서버, 자동 전화 시스템 구축 <br/>
+ 2017112064 이주원 (2017112064@dongguk.edu) - 서버, 자동 전화 시스템 구축, 팀장 <br/>
+ 2017112078 정지연 (jjy1000@dongguk.edu) - 애플리케이션 UI, 회원관리 시스템 구축 <br/>
+ 2017112084 신성현 (xltmqp32@dongguk.edu) - OCR 통한 전화번호 추출, 회원관리 시스템 구축
+</pre><br/><br/>
  
 > ## Development Environment
 * Android studio 3.4
@@ -49,7 +47,7 @@ OCR 통한 전화번호 추출, 회원관리 시스템 구축<br/><br/>
 신유경 roodwl@naver.com </br>
 이주원 2017112064@dongguk.edu </br>
 정지연 jy1000@dongguk.edu </br>
-신성현 xltmqp32@donggukedu </br>
+신성현 xltmqp32@dongguk.edu </br>
 
 > ## Original Opensource
 
