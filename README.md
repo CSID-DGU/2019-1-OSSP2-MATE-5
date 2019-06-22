@@ -18,7 +18,9 @@
 <br/><br/>
 
 > ## 실행방법 <br/><br/>
- 
+<pre>
+$ git clone https://github.com/CSID-DGU/2019-1-OSSP2-MATE-5.git
+</pre>
 
   > ## View
 
