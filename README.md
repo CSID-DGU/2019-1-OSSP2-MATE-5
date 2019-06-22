@@ -43,7 +43,7 @@
   ![mate_2](https://user-images.githubusercontent.com/48276522/59553642-6f9d6180-8fd2-11e9-8ccd-455699fd9917.PNG)<br/>
 <br/>
 
-> ## QUESTION
+> ## Contact
 <pre>
 신유경 roodwl@naver.com
 이주원 2017112064@dongguk.edu
