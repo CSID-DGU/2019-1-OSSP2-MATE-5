@@ -5,10 +5,10 @@
 
 > ## Developer
 <pre>
-신유경 (2015112162) - 서버, 자동 전화 시스템 구축
-이주원 (2017112064) - 서버, 자동 전화 시스템 구축, 팀장
-정지연 (2017112078) - 애플리케이션 UI, 회원관리 시스템 구축
-신성현 (2017112084) - OCR 통한 전화번호 추출, 회원관리 시스템 구축
+신유경 (2015112162) - SERVER, Establishing Automated Telephone System 
+이주원 (2017112064) - SERVER, Establishing Automated Telephone System, Team Leader
+정지연 (2017112078) - UI, Establishing a Membership Management System
+신성현 (2017112084) - Extracting PhoneNUM, Establishing a Membership Management System
 </pre><br/>
  
 > ## Development Environment
