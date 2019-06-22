@@ -51,12 +51,12 @@
 
 > ## View
 * <b>MATE_1 /Android-OCRSample-master<br/>Application to taking pictures of illegal advertising<br/><br/>
-  <img src="https://user-images.githubusercontent.com/48276522/59553640-6dd39e00-8fd2-11e9-807d-57a38ba0adc5.PNG" width="600" heigth="400"/><br/>
+  <img src="https://user-images.githubusercontent.com/48276522/59553640-6dd39e00-8fd2-11e9-807d-57a38ba0adc5.PNG" width="800" heigth="400"/><br/>
 
 * MATE_2 /Timer-master<br/>Automatic phone call application<br/><br/></b>
   자원봉사자가 사용중인 애플리케이션 화면
-  <img src ="https://user-images.githubusercontent.com/48276633/59965644-f2329d80-954b-11e9-9d3d-641808179e65.png" width="600" height="400"/><br/>
-  <img src="https://user-images.githubusercontent.com/48276633/59965691-87ce2d00-954c-11e9-814b-73375b8a397d.png" width="600" height="400"/><br/></br>
+  <img src ="https://user-images.githubusercontent.com/48276633/59965644-f2329d80-954b-11e9-9d3d-641808179e65.png" width="800" height="400"/><br/>
+  <img src="https://user-images.githubusercontent.com/48276633/59965691-87ce2d00-954c-11e9-814b-73375b8a397d.png" width="800" height="400"/><br/></br>
 
   자원봉사자가 전화를 건 수신자 화면(발신번화표시제한)<br/>
   <img src= "https://user-images.githubusercontent.com/48276633/59965651-0c6c7b80-954c-11e9-863d-ffd7ca861233.png" width="200" height="400"/><br/>
