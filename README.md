@@ -23,7 +23,7 @@ OCR 통한 전화번호 추출, 회원관리 시스템 구축<br/><br/>
 
 > ## How to run<br/>
 <pre>
-1. Run the Android studio.
+1. Run the Android studio
 2. Select 'Check out project from Version Control'
 3. git clone https://github.com/CSID-DGU/2019-1-OSSP2-MATE-5.git
 4. Put the URL in Clone Repository
@@ -46,10 +46,10 @@ OCR 통한 전화번호 추출, 회원관리 시스템 구축<br/><br/>
 <br/>
 
 > ## QUESTION
-신유경 roodwl@naver.com
-이주원 2017112064@dongguk.edu
-정지연 jy1000@dongguk.edu
-신성현 xltmqp32@donggukedu
+신유경 roodwl@naver.com </br>
+이주원 2017112064@dongguk.edu </br>
+정지연 jy1000@dongguk.edu </br>
+신성현 xltmqp32@donggukedu </br>
 
 > ## Original Opensource
 
