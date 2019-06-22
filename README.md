@@ -1,8 +1,9 @@
 # OCR-based Illegal Advertising Block <br/> 
   using Text Recognition API Overview ,
   DDoS attack<br/>
-  <pre>자원봉사자들로부터 수거된 전단지를 수사관들이 직접 프로그램에 번호를 입력하는 "단순노동" 일을 없애고 
-불법을 막는 일에 사람들을 적극적으로 참여시킨다. </pre>
+  <pre>" 자원봉사자들로부터 수거된 전단지를 
+수사관들이 직접 프로그램에 번호를 입력하는 "단순노동" 일을 없애고 
+불법을 막는 일에 사람들을 적극적으로 참여시킨다. " </pre>
 <br/>
 
 
