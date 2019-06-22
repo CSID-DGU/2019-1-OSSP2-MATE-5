@@ -30,10 +30,22 @@
 
 > ## Directory
 
+</br>
+
 > ## How to use
 <b>MATE_1 /Android-OCRSample-master</b></br>
 <pre>
-
+1. CHOOSE FROM GALLERY를 통해 앨범에 있는 전단지 사진을 가져오거나 또는 TAKE A PHOTO을 통해 전단지 사진을 찍는다.
+2. 전단지의 번호와 인식된 번호를 비교하며 일치하였을 경우, SUBMIT 버튼을 클릭해 데이터베이스에 번호를 전송한다.
+3. 데이터베이스에 번호가 전송된 후 전송 성공을 알리는 success가 나타난다.
+</pre>
+<b>MATE_2 /Timer-master</b></br>
+<pre>
+1. 회원가입을 진행한다. 
+2. 가입한 정보를 이용하여 로그인한다.
+3. START 버튼을 클릭함으로써 데이터베이스에서 전화번호를 랜덤하게 읽어와 발신번호 표시 제한으로 전화를 걸기 시작하고 시간을 카운트한다.
+4. STOP 버튼을 통해 자동 전화 시스템을 종료한다.
+5. SEND 버튼을 클릭하여 시간을 데이터베이스에 전송하고 0으로 초기화한다.
 </pre>
 <br/>
 
@@ -50,7 +62,7 @@
 <pre>
 신유경 roodwl@naver.com
 이주원 2017112064@dongguk.edu
-정지연 jjy1000@dongguk.edu
+정지연 jy1000@dongguk.edu
 신성현 xltmqp32@dongguk.edu
 </pre></br>
 
