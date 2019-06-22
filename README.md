@@ -30,7 +30,7 @@
 
 > ## Directory
 ![image](https://user-images.githubusercontent.com/48276633/59965167-6ae22b80-9545-11e9-974b-eec92823abfa.png)
-</br>
+</br></br>
 
 > ## How to use
 <b>MATE_1 /Android-OCRSample-master</b></br>
