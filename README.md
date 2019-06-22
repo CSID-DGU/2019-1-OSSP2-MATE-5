@@ -16,7 +16,7 @@
 * Ubuntu 18.04 (SERVER)
 * MySQL (DATABASE)
 * WAS (for PHP to JSON)
-![SERVICE](https://user-images.githubusercontent.com/48276522/59757414-a91de780-92c6-11e9-9544-9bb51c722df7.PNG)
+<img src="https://user-images.githubusercontent.com/48276522/59757414-a91de780-92c6-11e9-9544-9bb51c722df7.PNG" width="600" heigth="300"/>
 <br/>
 
 > ## How to run<br/>
@@ -29,7 +29,7 @@
 </pre></br>
 
 > ## Structure
-<img src="https://user-images.githubusercontent.com/48276633/59965267-a5989380-9546-11e9-900b-facbb88dec3b.png" width="500" height="250" />
+<img src="https://user-images.githubusercontent.com/48276633/59965267-a5989380-9546-11e9-900b-facbb88dec3b.png" width="500" height="300" />
 </br></br>
 
 > ## How to use
