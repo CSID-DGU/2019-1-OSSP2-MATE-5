@@ -28,7 +28,7 @@
 5. Run the application
 </pre></br>
 
-> ## Directory
+> ## Structure
 ![image](https://user-images.githubusercontent.com/48276633/59965167-6ae22b80-9545-11e9-974b-eec92823abfa.png)
 </br></br>
 
@@ -50,7 +50,6 @@
 <br/>
 
 > ## View
-
 * <b>MATE_1 /Android-OCRSample-master<br/>Application to taking pictures of illegal advertising<br/><br/>
   ![mate_1](https://user-images.githubusercontent.com/48276522/59553640-6dd39e00-8fd2-11e9-807d-57a38ba0adc5.PNG)<br/>
 
