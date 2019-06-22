@@ -59,7 +59,7 @@
   <img src="https://user-images.githubusercontent.com/48276633/59965992-9c142900-9550-11e9-9325-ee3c84c9750f.png" width="700" height="400"/><br/></br>
 
   <자원봉사자가 전화를 건 수신자 화면(발신번호표시제한)><br/></b>
-  <img src= "https://user-images.githubusercontent.com/48276633/59965977-6111f580-9550-11e9-945c-4d52f5dd309a.png" width="200" height="400"/><br/>
+  <img src= "https://user-images.githubusercontent.com/48276633/59965977-6111f580-9550-11e9-945c-4d52f5dd309a.png" width="400" height="400"/><br/>
 <br/>
 
 > ## Contact
