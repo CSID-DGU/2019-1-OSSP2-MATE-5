@@ -29,7 +29,7 @@
 </pre></br>
 
 > ## Structure
-![image](https://user-images.githubusercontent.com/48276633/59965167-6ae22b80-9545-11e9-974b-eec92823abfa.png)
+![image](https://user-images.githubusercontent.com/48276633/59965253-7bdf6c80-9546-11e9-9a2e-8d642d68e292.png)
 </br></br>
 
 > ## How to use
