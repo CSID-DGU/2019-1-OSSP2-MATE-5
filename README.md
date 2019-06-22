@@ -44,10 +44,12 @@
 <br/>
 
 > ## QUESTION
+<pre>
 신유경 roodwl@naver.com </br>
 이주원 2017112064@dongguk.edu </br>
 정지연 jy1000@dongguk.edu </br>
 신성현 xltmqp32@dongguk.edu </br>
+</pre></br>
 
 > ## Original Opensource
 
