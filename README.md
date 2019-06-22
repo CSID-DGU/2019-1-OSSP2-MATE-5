@@ -28,7 +28,10 @@
 5. Run the application
 </pre></br>
 
+> ## Directory
+
 > ## How to use
+<b>MATE_1 /Android-OCRSample-master</b></br>
 <pre>
 
 </pre>
