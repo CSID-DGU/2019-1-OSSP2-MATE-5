@@ -51,7 +51,7 @@
 
 > ## View
 * <b>MATE_1 /Android-OCRSample-master<br/>Application to taking pictures of illegal advertising<br/><br/>
-  <img src="https://user-images.githubusercontent.com/48276522/59553640-6dd39e00-8fd2-11e9-807d-57a38ba0adc5.PNG" width="400" heigth="400"/><br/>
+  <img src="https://user-images.githubusercontent.com/48276633/59965940-ea74f800-954f-11e9-949d-d1462f1bb912.png" width="400" heigth="400"/><br/>
 
 * MATE_2 /Timer-master<br/>Automatic phone call application<br/>
   <자원봉사자가 사용중인 애플리케이션 화면>
